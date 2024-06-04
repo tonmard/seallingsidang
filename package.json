@@ -1,5 +1,5 @@
 {
-  "name": "data-finance-yt",
+  "name": "sealling.github.io",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.24"
   }

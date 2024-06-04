@@ -15,7 +15,7 @@ const Navbar = () => {
         <img src={logof} width={160} height={30} alt="sea" />
       </a>
       <ul className="hidden md:flex">
-        <li className="p-4 hover:text-slate-100">Penelitian</li>
+        <li className="p-4 hover:text-slate-100">Berita</li>
         <li className="p-4 hover:text-slate-100">Early Warning</li>
         <li className="p-4 hover:text-slate-100">Fitur</li>
       </ul>
