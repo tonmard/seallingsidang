@@ -1,5 +1,10 @@
 import React from "react";
-import { FaFacebookSquare, FaInstagram, FaTwitterSquare } from "react-icons/fa";
+import {
+  FaFacebookSquare,
+  FaInstagram,
+  FaMapPin,
+  FaTwitterSquare,
+} from "react-icons/fa";
 import { logof } from "../constants";
 
 const Footer = () => {
@@ -18,30 +23,18 @@ const Footer = () => {
       </div>
       <div className="lg:col-span-2 flex justify-between mt-6">
         <div>
-          <h6 className="font-medium text-gray-400">Support</h6>
+          <h6 className="font-medium text-gray-400">Navigator</h6>
           <ul>
-            <li className="py-2 text-sm">Pricing</li>
-            <li className="py-2 text-sm">Documentation</li>
-            <li className="py-2 text-sm">Guides</li>
-            <li className="py-2 text-sm">API Status</li>
+            <li className="py-2 text-sm">Penelitian</li>
+            <li className="py-2 text-sm">Early Warning</li>
+            <li className="py-2 text-sm">Fitur</li>
           </ul>
         </div>
         <div>
-          <h6 className="font-medium text-gray-400">Company</h6>
-          <ul>
-            <li className="py-2 text-sm">About</li>
-            <li className="py-2 text-sm">Blog</li>
-            <li className="py-2 text-sm">Jobs</li>
-            <li className="py-2 text-sm">Press</li>
-          </ul>
-        </div>
-        <div>
-          <h6 className="font-medium text-gray-400">Legal</h6>
-          <ul>
-            <li className="py-2 text-sm">Claim</li>
-            <li className="py-2 text-sm">Policy</li>
-            <li className="py-2 text-sm">Terms</li>
-          </ul>
+          <h6 className="font-medium text-gray-400">Find Us</h6>
+          <div className="flex item-between md:w-[75%] my-6">
+            <FaMapPin size={30} />
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { alarm, bintang, jam } from "../constants";
 
-const Cards = () => {
+const Fitur = () => {
   return (
     <div className="w-full py-[10rem] px-4 bg-white">
       <div className="max-w-[700px] mx-auto text-center text-slate-900 mb-40">
@@ -44,4 +44,4 @@ const Cards = () => {
   );
 };
 
-export default Cards;
+export default Fitur;

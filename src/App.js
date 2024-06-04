@@ -1,19 +1,19 @@
 import React from "react";
-import Analytics from "./components/Analytics";
-import Cards from "./components/Cards";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import Newsletter from "./components/Newsletter";
+import Berita from "./components/Berita";
+import Fitur from "./components/Fitur";
+import Peringatan from "./components/Peringatan";
 
 function App() {
   return (
     <div className="scroll-smooth">
       <Navbar />
       <Hero />
-      <Analytics />
-      <Newsletter />
-      <Cards />
+      <Berita />
+      <Peringatan />
+      <Fitur />
       <Footer />
     </div>
   );
