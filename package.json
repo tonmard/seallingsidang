@@ -1,4 +1,5 @@
 {
+  "homepage": "https://tonmard.github.io/sealling.github.io/",
   "name": "sealling.github.io",
   "version": "0.1.0",
   "private": true,
@@ -22,7 +23,9 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "gaston": "react-scripts start",
+    "predeploy": "yarn build",
+    "deploy":"gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
