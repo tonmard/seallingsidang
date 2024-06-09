@@ -15,9 +15,15 @@ const Navbar = () => {
         <img src={logof} width={160} height={30} alt="sea" />
       </a>
       <ul className="hidden md:flex">
-        <li className="p-4 hover:text-slate-100">Berita</li>
-        <li className="p-4 hover:text-slate-100">Early Warning</li>
-        <li className="p-4 hover:text-slate-100">Fitur</li>
+        <li className="p-4 hover:text-slate-100">
+          <a href="#berita">Berita</a>
+        </li>
+        <li className="p-4 hover:text-slate-100">
+          <a href="#earlywarning">Early Warning</a>
+        </li>
+        <li className="p-4 hover:text-slate-100">
+          <a href="#fitur">Fitur</a>
+        </li>
       </ul>
       <div onClick={handleNav} className="block md:hidden">
         {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
@@ -32,8 +38,11 @@ const Navbar = () => {
         <a className="block pt-4 w-[10rem] xl:mr-8 mb-10" href="#hero">
           <img src={logof} width={160} height={30} alt="sea" />
         </a>
-        <li className="p-4 border-b border-t border-white hover:text-slate-100">
-          Penelitian
+        <li
+          href="#berita"
+          className="p-4 border-b border-t border-white hover:text-slate-100"
+        >
+          Berita
         </li>
         <li className="p-4 border-b border-white hover:text-slate-100">
           Early Warning

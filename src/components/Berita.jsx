@@ -3,7 +3,7 @@ import { rob1, rob2 } from "../constants";
 
 const Berita = () => {
   return (
-    <div className="w-full bg-white py-16 px-4 saturate-50">
+    <div id="#berita" className="w-full bg-white py-16 px-4 saturate-50">
       <div className="w-full shadow-lg cursor-grabbing p-4 my-4 rounded-lg hover:scale-105 duration-300 max-w-[900px] mb-20 mt-10 mx-auto  grid md:grid-cols-2">
         <img className="w-[300px] mx-auto my-4" src={rob1} alt="/" />
         <div className="flex flex-col justify-center ">

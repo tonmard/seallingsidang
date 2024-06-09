@@ -20,7 +20,7 @@ const Footer = () => {
         <div>
           <h6 className="font-medium text-gray-400">Navigator</h6>
           <ul>
-            <li className="py-2 text-sm">Penelitian</li>
+            <li className="py-2 text-sm">Berita</li>
             <li className="py-2 text-sm">Early Warning</li>
             <li className="py-2 text-sm">Fitur</li>
           </ul>
