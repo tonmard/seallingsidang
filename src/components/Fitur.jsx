@@ -3,7 +3,7 @@ import { alarm, bintang, jam } from "../constants";
 
 const Fitur = () => {
   return (
-    <div className="w-full py-[10rem] px-4 bg-white">
+    <div id="fitur" className="w-full py-[10rem] px-4 bg-white">
       <div className="max-w-[700px] mx-auto text-center text-slate-900 mb-40">
         <h1 className="text-4xl object-top font-bold">
           Keunggulan Layanan Kami

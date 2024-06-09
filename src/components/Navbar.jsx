@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { disablePageScroll, enablePageScroll } from "scroll-lock";
 import { logof } from "../constants";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   const handleNav = () => {
-    setNav(!nav);
+    if (nav) {
+      setNav(false);
+      enablePageScroll();
+    } else {
+      setNav(true);
+      disablePageScroll();
+    }
   };
 
   return (
@@ -14,7 +21,7 @@ const Navbar = () => {
       <a className="block w-[10rem] xl:mr-8" href="#hero">
         <img src={logof} width={160} height={30} alt="sea" />
       </a>
-      <ul className="hidden md:flex">
+      <ul className="hidden md:flex text-white">
         <li className="p-4 hover:text-slate-100">
           <a href="#berita">Berita</a>
         </li>
@@ -36,19 +43,28 @@ const Navbar = () => {
         }
       >
         <a className="block pt-4 w-[10rem] xl:mr-8 mb-10" href="#hero">
-          <img src={logof} width={160} height={30} alt="sea" />
+          <img
+            onClick={handleNav}
+            src={logof}
+            width={160}
+            height={30}
+            alt="sea"
+          />
         </a>
-        <li
-          href="#berita"
-          className="p-4 border-b border-t border-white hover:text-slate-100"
-        >
-          Berita
+        <li className="p-4 border-b border-t border-white hover:text-slate-100">
+          <a href="#berita" onClick={handleNav}>
+            Berita
+          </a>
         </li>
         <li className="p-4 border-b border-white hover:text-slate-100">
-          Early Warning
+          <a href="#earlywarning" onClick={handleNav}>
+            Early Warning
+          </a>
         </li>
         <li className="p-4 border-b border-white hover:text-slate-100">
-          Fitur
+          <a href="#fitur" onClick={handleNav}>
+            Fitur
+          </a>
         </li>
       </ul>
     </div>

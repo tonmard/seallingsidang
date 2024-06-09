@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  FaFacebookSquare,
+  FaGoogle,
   FaInstagram,
   FaMapPin,
   FaTwitterSquare,
@@ -20,15 +20,21 @@ const Footer = () => {
         <div>
           <h6 className="font-medium text-gray-400">Navigator</h6>
           <ul>
-            <li className="py-2 text-sm">Berita</li>
-            <li className="py-2 text-sm">Early Warning</li>
-            <li className="py-2 text-sm">Fitur</li>
+            <li className="py-2 text-sm hover:text-white">
+              <a href="#berita">Berita</a>
+            </li>
+            <li className="py-2 text-sm hover:text-white">
+              <a href="#earlywarning">Early Warning</a>
+            </li>
+            <li className="py-2 text-sm hover:text-white">
+              <a href="#fitur">Fitur</a>
+            </li>
           </ul>
         </div>
         <div>
           <h6 className="font-medium px-5 text-gray-400">Contact Us</h6>
-          <div className="flex justify-between md:w-[100%] my-6">
-            <FaFacebookSquare size={30} />
+          <div className="flex justify-between md:w-[100%] my-6 ">
+            <FaGoogle size={30} />
             <FaInstagram size={30} />
             <FaTwitterSquare size={30} />
           </div>
@@ -36,7 +42,9 @@ const Footer = () => {
         <div>
           <h6 className="font-medium  text-gray-400">Find Us</h6>
           <div className="flex right-1  my-6">
-            <FaMapPin size={30} />
+            <a href="https://maps.app.goo.gl/mMPTE2TiEzgByeif6">
+              <FaMapPin size={30} />
+            </a>
           </div>
         </div>
       </div>

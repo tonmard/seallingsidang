@@ -3,9 +3,9 @@ import { rob1, rob2 } from "../constants";
 
 const Berita = () => {
   return (
-    <div id="#berita" className="w-full bg-white py-16 px-4 saturate-50">
+    <div id="berita" className="w-full bg-white py-16 px-4 ">
       <div className="w-full shadow-lg cursor-grabbing p-4 my-4 rounded-lg hover:scale-105 duration-300 max-w-[900px] mb-20 mt-10 mx-auto  grid md:grid-cols-2">
-        <img className="w-[300px] mx-auto my-4" src={rob1} alt="/" />
+        <img className="w-[300px] mx-auto my-4 rounded-lg" src={rob1} alt="/" />
         <div className="flex flex-col justify-center ">
           <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold text-slate-900 py-2">
             Apa itu banjir rob?
@@ -22,7 +22,7 @@ const Berita = () => {
         </div>
       </div>
       <div className="w-full shadow-lg cursor-grabbing p-4 my-4 rounded-lg hover:scale-105 duration-300 max-w-[900px] mb-10 mx-auto  grid md:grid-cols-2">
-        <img className="w-[300px] mx-auto my-4" src={rob2} alt="/" />
+        <img className="w-[300px] mx-auto my-4 rounded-lg" src={rob2} alt="/" />
         <div className="flex flex-col justify-center ">
           <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold text-slate-900 py-2">
             Bagaimana proses terjadinya banjir rob?
