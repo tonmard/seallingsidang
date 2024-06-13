@@ -1,19 +1,22 @@
 import React from "react";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import MonitoringNow from "./pages/MonitoringNow";
+import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
-import Berita from "./components/Berita";
-import Fitur from "./components/Fitur";
-import Peringatan from "./components/Peringatan";
+import Footer from "./components/Footer";
+import PeringatanDini from "./pages/PeringatanDini";
 
 function App() {
   return (
-    <div className="scroll-smooth">
+    <div className="app scroll-smooth select-none">
       <Navbar />
-      <Hero />
-      <Berita />
-      <Peringatan />
-      <Fitur />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/monitoring-now" element={<MonitoringNow />} />
+        <Route path="/peringatan-dini" element={<PeringatanDini />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Footer />
     </div>
   );

@@ -6,5 +6,6 @@ import regis from "../assets/regis.svg";
 import logof from "../assets/logof.svg";
 import rob1 from "../assets/rob1.svg";
 import rob2 from "../assets/rob2.svg";
+import ombak from "../assets/ombak.svg";
 
-export { sea, jam, bintang, alarm, regis, logof, rob1, rob2 };
+export { sea, jam, bintang, alarm, regis, logof, rob1, rob2, ombak };

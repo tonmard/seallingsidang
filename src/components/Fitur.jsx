@@ -24,7 +24,7 @@ const Fitur = () => {
           <h2 className="text-2xl font-bold text-center py-8">Verifikasi</h2>
           <div className="text-center font-medium">
             <p className="py-2 border-t mx-8 mt-1">
-              Sistem dibuat menggunakan alat yang sudah tersertifikasi.
+              Sistem dibuat menggunakan sensor yang sudah tersertifikasi.
             </p>
           </div>
         </div>

@@ -1,25 +1,50 @@
 import React from "react";
+import { ombak } from "../constants";
 
 const Peringatan = () => {
   return (
-    <div id="earlywarning" className="w-full py-20 text-white px-4">
-      <div className="max-w-[1240px] mx-auto grid lg:grid-cols-3">
-        <div className="lg:col-span-2 my-4">
-          <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">
-            Ingin Dapatkan Pemberitahuan Darurat?
-          </h1>
-          <p>Daftarkan dirimu sekarang!</p>
-        </div>
-        <div className="my-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between w-full">
-            <input
-              className="p-3 flex w-full rounded-md text-black"
-              type="email"
-              placeholder="Masukan Email"
+    <div className="w-full py-20 bg-white px-6">
+      <div className="max-w-md md:w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden animated">
+        <div className="md:justify-center">
+          <div className="md:justify-center">
+            <img
+              className="h-48 w-full object-cover"
+              src={ombak}
+              alt="Modern building architecture"
             />
-            <button className="bg-white hover:bg-slate-100 text-slate-900 rounded-md font-medium w-[200px] ml-4 my-6 px-6 py-3">
-              Kirim
-            </button>
+          </div>
+          <div className="p-6">
+            <h1 className="block mt-1 font-serif text-3xl md:text-4xl my-6 font-medium text-center text-slate-900">
+              Daftar Peringatan Dini!
+              <p className="text-slate-600 text-xs pl-4 p-1">
+                Daftarkan dirimu dan dapatkan fitur peringatan dini sekarang.
+              </p>
+            </h1>
+
+            <form>
+              <label className="block">
+                <span className="block text-sm font-normal pl-4 p-1 text-slate-900">
+                  Email:
+                </span>
+                <div className="relative flex items-center">
+                  <input
+                    name="email"
+                    type="text"
+                    required
+                    className="w-full text-sm text-black border border-black rounded-full p-2 pl-4 outline-none "
+                    placeholder="Masukan email anda"
+                  />
+                </div>
+                <p className="text-slate-600 text-xs pl-4 p-1">
+                  *Pastikan email yang anda masukan sudah benar.
+                </p>
+              </label>
+            </form>
+            <a href="/">
+              <button className="w-full transition ease-in-out duration-300 hover:bg-gray-700 hover:text-white bg-gray-800 text-white h-10 mt-5 rounded-full font-medium mx-auto">
+                Kirim
+              </button>
+            </a>
           </div>
         </div>
       </div>

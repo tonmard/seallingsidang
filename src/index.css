@@ -5,7 +5,17 @@
 body {
   background-color: #0f172a;
 }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-.saturate {
-  filter: saturate(50%);
+.animated {
+  animation: fadeInUp 0.5s ease-out;
 }
