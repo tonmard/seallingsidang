@@ -19,11 +19,13 @@ const RealTime = () => {
 
   return (
     <div className="max-w-[1240px] w-full  h-full mx-auto flex flex-col  pt-8 pb-8">
-      <header className="bg-white shadow-md max-w-[1240px] p-4 mb-6">
-        <h1 className="text-xl underline md:text-4xl font-semibold text-slate-900 mb-4 mr-8">
+      <header className="warning-page shadow-md max-w-[1240px] p-4 mb-6">
+        <h1 className="text-xl underline md:text-4xl font-semibold text-white mb-4 mr-8">
           DASHBOARD MONITORING LEVEL AIR LAUT
         </h1>
-        <label className="text-base font-semibold" for="wilayah">
+      </header>
+      <div className="px-8 mb-8 ">
+        <label className="text-base font-semibold  " for="wilayah">
           Pilih Wilayah:
         </label>
         <select
@@ -33,10 +35,10 @@ const RealTime = () => {
           <option value="wilayah1">-----------Pilih Wilayah----------</option>
           <option value="wilayah2">Semarang - Rumah Pompa KITS</option>
         </select>
-      </header>
+      </div>
       <div className="bg-white  shadow-md rounded p-4">
         <h1 className="text-slate-900 font-bold text-2xl md:text-4xl mb-4 pt-4 pb-4 ">
-          Rumah Pompa KITS
+          Semarang - Rumah Pompa KITS
         </h1>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
           <CardData title="Hari ini" total="20 cm" rate="0.43%" levelUp>
@@ -104,65 +106,13 @@ const RealTime = () => {
 
         <div class="pt-4 pb-4 mt-4 grid grid-cols-1 md:grid-cols-3 md:grid-rows-1">
           <div class="col-span-2 md:mr-6 mb-6">
-            <div className="max-w-[800px] hover:scale-105 duration-300 cursor-grabbing rounded-lg shadow-lg border bordet-stroke p-4 ">
-              <header className="text-xl font-bold">Ketinggian Air Laut</header>
-              <div className="flex justify-between items-center mt-4">
-                <div>
-                  <p className="text-gray-600">Semarang - Rumah Pompa KITS</p>
-                </div>
-                <div>
-                  <p className="text-gray-600">17 Juni 2024</p>
-                </div>
-                <select
-                  className="border border-collapse ml-2 px-2 rounded-lg p-0"
-                  id="waktu"
-                >
-                  <option value="hariini">Hari ini</option>
-                  <option value="mingguini">Minggu ini</option>
-                  <option value="bulanini">Bulan ini</option>
-                </select>
-              </div>
-              <Plot
-                className="flex w-full h-[300px]"
-                data={[
-                  {
-                    x: Array.from({ length: data.length }, (_, i) => i),
-                    y: data,
-                    type: "scatter",
-                    mode: "lines+markers",
-                    marker: { color: "blue" },
-                    name: "Sensor Level",
-                  },
-                  {
-                    x: Array.from({ length: data.length }, (_, i) => i),
-                    y: data.map((d) => d - 20),
-                    type: "scatter",
-                    mode: "lines+markers",
-                    marker: { color: "red" },
-                    name: "Sensor Pressure",
-                  },
-                  {
-                    x: Array.from({ length: data.length }, (_, i) => i),
-                    y: data.map((d) => d - 50),
-                    type: "scatter",
-                    mode: "lines+markers",
-                    marker: { color: "green" },
-                    name: "Sensor Ultrasonik",
-                  },
-                ]}
-                layout={{
-                  xaxis: { title: "Time(h)" },
-                  yaxis: { title: "Water level(m)" },
-                }}
-              />
-            </div>
-            <div className="mt-4">
-              <div className="max-w-[800px] rounded-lg hover:scale-105 duration-300 cursor-grabbing shadow-lg border bordet-stroke p-4 ">
-                <header className="text-xl font-bold">Tekanan Air Laut</header>
+            <div className="max-w-[800px]  rounded-lg shadow-lg border border-stroke ">
+              <header className="warning-page text-xl font-bold">
+                Ketinggian Air Laut
+              </header>
+              <div className="mx-4">
+                {" "}
                 <div className="flex justify-between items-center mt-4">
-                  <div>
-                    <p className="text-gray-600">Semarang - Rumah Pompa KITS</p>
-                  </div>
                   <div>
                     <p className="text-gray-600">17 Juni 2024</p>
                   </div>
@@ -176,7 +126,7 @@ const RealTime = () => {
                   </select>
                 </div>
                 <Plot
-                  className="flex w-full  h-[300px]"
+                  className="flex w-full h-[300px]"
                   data={[
                     {
                       x: Array.from({ length: data.length }, (_, i) => i),
@@ -184,7 +134,23 @@ const RealTime = () => {
                       type: "scatter",
                       mode: "lines+markers",
                       marker: { color: "blue" },
+                      name: "Sensor Level",
+                    },
+                    {
+                      x: Array.from({ length: data.length }, (_, i) => i),
+                      y: data.map((d) => d - 20),
+                      type: "scatter",
+                      mode: "lines+markers",
+                      marker: { color: "red" },
                       name: "Sensor Pressure",
+                    },
+                    {
+                      x: Array.from({ length: data.length }, (_, i) => i),
+                      y: data.map((d) => d - 50),
+                      type: "scatter",
+                      mode: "lines+markers",
+                      marker: { color: "green" },
+                      name: "Sensor Ultrasonik",
                     },
                   ]}
                   layout={{
@@ -194,11 +160,51 @@ const RealTime = () => {
                 />
               </div>
             </div>
+            <div className="mt-4">
+              <div className="max-w-[800px] rounded-lg  shadow-lg border border-stroke  ">
+                <header className="warning-page text-xl font-bold">
+                  Tekanan Air Laut
+                </header>
+                <div className="mx-4">
+                  {" "}
+                  <div className="flex justify-between items-center mt-4">
+                    <div>
+                      <p className="text-gray-600">17 Juni 2024</p>
+                    </div>
+                    <select
+                      className="border border-collapse ml-2 px-2 rounded-lg p-0"
+                      id="waktu"
+                    >
+                      <option value="hariini">Hari ini</option>
+                      <option value="mingguini">Minggu ini</option>
+                      <option value="bulanini">Bulan ini</option>
+                    </select>
+                  </div>
+                  <Plot
+                    className="flex w-full  h-[300px]"
+                    data={[
+                      {
+                        x: Array.from({ length: data.length }, (_, i) => i),
+                        y: data,
+                        type: "scatter",
+                        mode: "lines+markers",
+                        marker: { color: "blue" },
+                        name: "Sensor Pressure",
+                      },
+                    ]}
+                    layout={{
+                      xaxis: { title: "Time(h)" },
+                      yaxis: { title: "Water level(m)" },
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="">
-            <div className="rounded-lg shadow-lg hover:scale-105 duration-300 cursor-grabbing w-full max-w-[500px] ">
-              <div class="warning-header font-bold">
+            <div className="rounded-lg shadow-lg  w-full max-w-[500px] ">
+              <div class="warning-header text-base font-bold">
                 <h2>Status</h2>
               </div>
               <div class="warning-content">
@@ -222,11 +228,11 @@ const RealTime = () => {
               </div>
             </div>
 
-            <div className=" mt-4 max-w-[400px] hover:scale-105 duration-300 cursor-grabbing p-4 bg-white w-auto h-auto  rounded-lg border shadow-lg">
-              <div>
-                <h1 className="left-0 top-0 text-lg font-bold  text-slate-900 mb-4">
-                  Lokasi
-                </h1>
+            <div className=" mt-4 max-w-[400px]   bg-white w-auto h-auto  rounded-lg border shadow-lg">
+              <div className="warning-page text-base font-bold  text-slate-900 mb-4">
+                Lokasi
+              </div>
+              <div className="justify-center px-4 pb-4">
                 <iframe
                   className="rounded-lg w-full h-full"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.5605428011!2d110.46608487577274!3d-6.94300516796953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70f3003be80917%3A0xc6782afdfefb534c!2sRumah%20Pompa%20KITS!5e0!3m2!1sid!2sid!4v1718395282990!5m2!1sid!2sid"

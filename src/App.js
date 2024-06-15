@@ -7,6 +7,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PeringatanDini from "./pages/PeringatanDini";
 import About from "./pages/About";
+import Edukasi from "./pages/Edukasi";
+import Penelitian from "./pages/Penelitian";
+import Peralatan from "./pages/Peralatan";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route path="/monitoring-now" element={<MonitoringNow />} />
         <Route path="/peringatan-dini" element={<PeringatanDini />} />
         <Route path="/tentang-kami" element={<About />} />
+        <Route path="/edukasi" element={<Edukasi />} />
+        <Route path="/penelitian" element={<Penelitian />} />
+        <Route path="/peralatan" element={<Peralatan />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

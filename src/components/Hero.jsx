@@ -1,11 +1,11 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
+
 import Typed from "react-typed";
 
 const Hero = () => {
   return (
-    <div id="hero" className="text-white">
-      <div className="max-w-[1000px] w-full h-screen max-h-[700px] mx-auto text-center flex flex-col justify-center">
+    <div className="text-white">
+      <div className="max-w-[1000px] w-full h-screen max-h-[500px] mx-auto text-center flex flex-col justify-center">
         <div className="flex justify-center item-center">
           <h1 className=" bg-gradient-to-r from-blue-900 to-sky-500 text-white px-2 text-7xl object-mid font-black">
             Sea Level Monitoring.

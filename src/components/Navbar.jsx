@@ -27,7 +27,7 @@ const Navbar = () => {
             <a href="/penelitian">Penelitian</a>
           </li>
           <li className="p-4 hover:text-slate-100">
-            <a href="/edukasi">Peralatan</a>
+            <a href="/peralatan">Peralatan</a>
           </li>
           <li className="p-4 hover:text-slate-100">
             <a href="/edukasi">Edukasi</a>
