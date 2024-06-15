@@ -14,8 +14,8 @@ const Peringatan = () => {
             />
           </div>
           <div className="p-6">
-            <h1 className="block mt-1 font-serif text-3xl md:text-4xl my-6 font-medium text-center text-slate-900">
-              Daftar Peringatan Dini!
+            <h1 className="block mt-1 font-serif text-2xl md:text-3xl my-6 font-medium text-center text-slate-900">
+              Dapatkan Peringatan Dini!
               <p className="text-slate-600 text-xs pl-4 p-1">
                 Daftarkan dirimu dan dapatkan fitur peringatan dini sekarang.
               </p>
@@ -41,7 +41,7 @@ const Peringatan = () => {
               </label>
             </form>
             <a href="/">
-              <button className="w-full transition ease-in-out duration-300 hover:bg-gray-700 hover:text-white bg-gray-800 text-white h-10 mt-5 rounded-full font-medium mx-auto">
+              <button className="w-full  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:text-white bg-slate-900 text-white h-10 mt-5 rounded-full font-medium mx-auto">
                 Kirim
               </button>
             </a>

@@ -37,8 +37,8 @@ const Navbar = () => {
           </li>
         </ul>
         <a href="/peringatan-dini">
-          <button className="hidden md:flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 bg-white h-auto text-center hover:bg-slate-100 md:w-[180px] rounded-full font-medium text-sm my-6 mx-auto px-4 py-2 text-slate-900">
-            Daftar Peringatan Dini
+          <button className="hidden md:flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 bg-white h-auto text-center hover:bg-slate-100 md:w-[200px] rounded-full font-medium text-sm my-6 mx-auto px-4 py-2 text-slate-900">
+            Dapatkan Peringatan Dini
           </button>
         </a>
 
@@ -81,9 +81,14 @@ const Navbar = () => {
               Tentang Kami
             </a>
           </li>
+          <li className="p-4 border-b border-white hover:text-slate-100">
+            <a href="/monitoring-now" onClick={handleNav}>
+              Monitoring Now
+            </a>
+          </li>
           <li className="p-4 font-lg  hover:text-slate-100">
             <a href="/peringatan-dini" onClick={handleNav}>
-              Daftar Peringatan Dini
+              Dapatkan Peringatan Dini
             </a>
           </li>
         </ul>
