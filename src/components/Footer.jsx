@@ -12,7 +12,7 @@ const Footer = () => {
     <div className="block top-0 left-0 w-full bg-slate-900">
       <div className="max-w-[1240px]  mx-auto py-8 px-4 grid lg:grid-cols-3 gap-8 text-gray-300">
         <div>
-          <a className="block w-[10rem] xl:mr-8" href="#/">
+          <a className="block w-[10rem] xl:mr-8" href="/sealling2.github.io">
             <img src={logof} width={240} height={60} alt="sea" />
           </a>
           <p className="py-4">Copyright © Sealling 2024.</p>

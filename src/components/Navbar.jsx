@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <div className="block top-0 left-0 w-full bg-slate-900">
       <div className="flex font-md justify-between items-center h-24 max-w-[1240px] mx-auto px-4 py-4 text-white hover-lg">
-        <a className="block w-[10rem] xl:mr-8" href="#/">
+        <a className="block w-[10rem] xl:mr-8" href="/sealling2.github.io">
           <img src={logof} width={160} height={30} alt="sea" />
         </a>
         <ul className="hidden md:flex text-white">
@@ -52,7 +52,10 @@ const Navbar = () => {
               : "ease-in-out duration-500 fixed left-[-100%] "
           }
         >
-          <a className="block pt-4 w-[10rem] xl:mr-8 mb-10" href="#/">
+          <a
+            className="block pt-4 w-[10rem] xl:mr-8 mb-10"
+            href="/sealling2.github.io"
+          >
             <img
               onClick={handleNav}
               src={logof}
