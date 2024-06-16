@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
           <div>
             <h6 className="font-medium  text-gray-400">Find Us</h6>
-            <div className="flex right-1  my-6">
+            <div className="flex object-right my-6">
               <a href="https://maps.app.goo.gl/mMPTE2TiEzgByeif6">
                 <FaMapPin size={30} />
               </a>

@@ -41,29 +41,59 @@ const Ilmu = () => {
           </div>
         </div>
 
-        <div className="bg-slate-900 text-white border border-gray-200 rounded-2xl shadow-lg grid md:grid-cols-3 m-4">
-          <div className="col-span-2 p-8 text-left">
-            <div className="py-4 px-2 w-auto h-auto bg-slate-900 text-white mb-2">
-              <div className="text-white underline font-semibold text-2xl justify-center">
-                Dampak banjir rob?
-              </div>
-              <div className="text-gray-200 text-left font-thin text-base my-2">
-                Banjir rob dapat menyebabkan berbagai dampak negatif. Kerusakan
-                infrastruktur seperti bangunan, jalan, dan fasilitas umum sering
-                terjadi. Kerugian ekonomi juga dapat signifikan, mengganggu
-                kegiatan perdagangan, perikanan, dan pariwisata. Dampak
-                lingkungan termasuk erosi pantai dan kerusakan habitat pesisir.
-                Selain itu, kesehatan masyarakat bisa terganggu akibat penyakit
-                yang dibawa oleh air banjir dan masalah sanitasi.
+        <div class="max-w-md mx-4 lg:max-w-[1240px] bg-slate-900 rounded-xl shadow-xl overflow-hidden ">
+          <div class="md:flex ">
+            <div class=" md:justify-center">
+              <img
+                class="h-48 w-full object-cover md:h-[300px] md:w-[1000px]"
+                src={waves}
+                alt="Modern building architecture"
+              />
+            </div>
+            <div class="p-8 md:max-w-[800px]">
+              <div className="justify-between py-2 text-center md:text-right">
+                <h3 class="text-2xl md:text-4xl font-extrabold underline mb-6 text-white font-serif ">
+                  Dampak banjir rob?
+                </h3>
+                <p class="mt-2 text-gray-200 text-base">
+                  Banjir rob dapat menyebabkan berbagai dampak negatif.
+                  Kerusakan infrastruktur seperti bangunan, jalan, dan fasilitas
+                  umum sering terjadi. Kerugian ekonomi juga dapat signifikan,
+                  mengganggu kegiatan perdagangan, perikanan, dan pariwisata.
+                  Dampak lingkungan termasuk erosi pantai dan kerusakan habitat
+                  pesisir. Selain itu, kesehatan masyarakat bisa terganggu
+                  akibat penyakit yang dibawa oleh air banjir dan masalah
+                  sanitasi.
+                </p>
               </div>
             </div>
           </div>
-          <div className=" hidden md:block bg-white rounded-r-2xl h-full lg:max-h-[300px]">
-            <img
-              src={waves}
-              className="w-full h-full object-cover rounded-r-2xl "
-              alt=""
-            />
+        </div>
+        <div class="max-w-md mx-4 mt-6 lg:max-w-[1240px] bg-slate-900 rounded-xl shadow-xl overflow-hidden ">
+          <div class="md:flex ">
+            <div class=" md:justify-center">
+              <img
+                class="h-48 w-full object-cover md:h-[300px] md:w-[1000px]"
+                src={waves}
+                alt="Modern building architecture"
+              />
+            </div>
+            <div class="p-8 md:max-w-[800px]">
+              <div className="justify-between py-2 text-center md:text-right">
+                <h3 class="text-2xl md:text-4xl font-extrabold underline mb-6 text-white font-serif ">
+                  Manfaat pemantauan air laut?
+                </h3>
+                <p class="mt-2 text-gray-200 text-base">
+                  Implementasi pemantauan air laut memberikan manfaat signifikan
+                  terkait dengan sistem peringatan dini. Dengan deteksi dini
+                  polusi dan perubahan kondisi laut, tindakan pencegahan dapat
+                  segera diambil untuk mencegah kerusakan lingkungan. Pemantauan
+                  real-time juga memungkinkan identifikasi cepat terhadap
+                  ancaman seperti tsunami atau badai, memberikan peringatan dini
+                  kepada masyarakat pesisir dan meningkatkan keselamatan publik.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ const Fitur = () => {
       <div className="max-w-[1240px] w-full h-full mx-auto text-center flex flex-col">
         <div className=" mx-auto text-cente underline decoration-slate-900 text-slate-900 mb-20">
           <h1 className="text-2xl md:text-4xl object-top font-bold my-6">
-            Keunggulan Layanan Kami
+            Apa yang kami tawarkan?
           </h1>
         </div>
         <div className="max-w-[1240px] mx-auto grid md:grid-cols-3 gap-12 px-16">

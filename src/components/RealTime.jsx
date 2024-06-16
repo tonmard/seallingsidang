@@ -20,7 +20,7 @@ const RealTime = () => {
   return (
     <div className="max-w-[1240px] w-full  h-full mx-auto flex flex-col  pt-8 pb-8">
       <header className="warning-page shadow-md max-w-[1240px] p-4 mb-6">
-        <h1 className="text-xl underline md:text-4xl font-semibold text-white mb-4 mr-8">
+        <h1 className="text-xl md:text-4xl font-semibold text-white  mr-8">
           DASHBOARD MONITORING LEVEL AIR LAUT
         </h1>
       </header>
@@ -114,7 +114,7 @@ const RealTime = () => {
                 {" "}
                 <div className="flex justify-between items-center mt-4">
                   <div>
-                    <p className="text-gray-600">17 Juni 2024</p>
+                    <p className="text-gray-600">⏰ 17 Juni 2024</p>
                   </div>
                   <select
                     className="border border-collapse ml-2 px-2 rounded-lg p-0"
@@ -169,7 +169,7 @@ const RealTime = () => {
                   {" "}
                   <div className="flex justify-between items-center mt-4">
                     <div>
-                      <p className="text-gray-600">17 Juni 2024</p>
+                      <p className="text-gray-600">⏰ 17 Juni 2024</p>
                     </div>
                     <select
                       className="border border-collapse ml-2 px-2 rounded-lg p-0"
@@ -228,19 +228,26 @@ const RealTime = () => {
               </div>
             </div>
 
-            <div className=" mt-4 max-w-[400px]   bg-white w-auto h-auto  rounded-lg border shadow-lg">
+            <div className=" mt-4 max-w-[400px]  bg-white w-auto h-auto  rounded-lg border shadow-lg">
               <div className="warning-page text-base font-bold  text-slate-900 mb-4">
                 Lokasi
               </div>
               <div className="justify-center px-4 pb-4">
-                <iframe
-                  className="rounded-lg w-full h-full"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.5605428011!2d110.46608487577274!3d-6.94300516796953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70f3003be80917%3A0xc6782afdfefb534c!2sRumah%20Pompa%20KITS!5e0!3m2!1sid!2sid!4v1718395282990!5m2!1sid!2sid"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                  title="Lokasi Rumah Pompa KITS"
-                ></iframe>
+                <div className="justify-center">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63360.366282956194!2d107.63940574009342!3d-7.006587075948274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e9adf177bf8d%3A0x437398556f9fa03!2sUniversitas%20Telkom!5e0!3m2!1sid!2sid!4v1718549027955!5m2!1sid!2sid"
+                    width="360"
+                    height="350"
+                    style={{
+                      color: "red",
+                      fontSize: "16px", // Pastikan nilai properti style adalah objek
+                    }}
+                    allowfullscreen=""
+                    loading="lazy"
+                    title="Alamat Rumah Pompa"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>

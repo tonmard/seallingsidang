@@ -8,7 +8,7 @@ import rob1 from "../assets/rob1.svg";
 import rob2 from "../assets/rob2.svg";
 import ombak from "../assets/ombak.svg";
 import tujuan from "../assets/target.svg";
-import waves from "../assets/3dombak.svg";
+import waves from "../assets/3dombak.webp";
 
 export {
   sea,

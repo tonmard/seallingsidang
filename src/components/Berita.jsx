@@ -1,5 +1,5 @@
 import React from "react";
-import { rob2 } from "../constants";
+import { waves } from "../constants";
 
 const Berita = () => {
   return (
@@ -9,7 +9,7 @@ const Berita = () => {
           <div class=" md:justify-center">
             <img
               class="h-48 w-full object-cover md:h-[300px] md:w-[1000px]"
-              src={rob2}
+              src={waves}
               alt="Modern building architecture"
             />
           </div>

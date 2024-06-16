@@ -1,15 +1,15 @@
 import React from "react";
-import { ombak } from "../constants";
+import { waves } from "../constants";
 
 const Peringatan = () => {
   return (
-    <div className="w-full py-20 bg-white px-6">
-      <div className="max-w-md md:w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden animated">
+    <div className="w-full py-10 bg-white px-6">
+      <div className="max-w-md md:w-6xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden animated">
         <div className="md:justify-center">
           <div className="md:justify-center">
             <img
               className="h-48 w-full object-cover"
-              src={ombak}
+              src={waves}
               alt="Modern building architecture"
             />
           </div>
