@@ -12,7 +12,7 @@ const Footer = () => {
     <div className="block top-0 left-0 w-full bg-slate-900">
       <div className="max-w-[1240px]  mx-auto py-8 px-4 grid lg:grid-cols-3 gap-8 text-gray-300">
         <div>
-          <a className="block w-[10rem] xl:mr-8" href="/">
+          <a className="block w-[10rem] xl:mr-8" href="#/">
             <img src={logof} width={240} height={60} alt="sea" />
           </a>
           <p className="py-4">Copyright © Sealling 2024.</p>
@@ -22,16 +22,16 @@ const Footer = () => {
             <h6 className="font-medium text-gray-400">Navigator</h6>
             <ul>
               <li className="py-2 text-sm hover:text-white">
-                <a href="/penelitian">Penelitian</a>
+                <a href="#/penelitian">Penelitian</a>
               </li>
               <li className="py-2 text-sm hover:text-white">
-                <a href="/peralatan">Peralatan</a>
+                <a href="#/peralatan">Peralatan</a>
               </li>
               <li className="py-2 text-sm hover:text-white">
-                <a href="/edukasi">Edukasi</a>
+                <a href="#/edukasi">Edukasi</a>
               </li>
               <li className="py-2 text-sm hover:text-white">
-                <a href="/tentang-kami">Tentang Kami</a>
+                <a href="#/tentang-kami">Tentang Kami</a>
               </li>
             </ul>
           </div>
@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
           <div>
             <h6 className="font-medium  text-gray-400">Find Us</h6>
-            <div className="flex object-right my-6">
+            <div className="flex  my-6">
               <a href="https://maps.app.goo.gl/mMPTE2TiEzgByeif6">
                 <FaMapPin size={30} />
               </a>
