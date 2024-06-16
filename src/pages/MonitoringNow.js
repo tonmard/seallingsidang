@@ -3,7 +3,7 @@ import RealTime from "../components/RealTime";
 
 const MonitoringNow = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white animated">
       <RealTime />
     </div>
   );

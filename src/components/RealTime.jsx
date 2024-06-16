@@ -236,7 +236,7 @@ const RealTime = () => {
                 <div className="justify-center">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63360.366282956194!2d107.63940574009342!3d-7.006587075948274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e9adf177bf8d%3A0x437398556f9fa03!2sUniversitas%20Telkom!5e0!3m2!1sid!2sid!4v1718549027955!5m2!1sid!2sid"
-                    width="360"
+                    width="360 "
                     height="350"
                     style={{
                       color: "red",

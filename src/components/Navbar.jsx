@@ -24,19 +24,19 @@ const Navbar = () => {
         </a>
         <ul className="hidden md:flex text-white">
           <li className="p-4 hover:text-slate-100">
-            <a href="/penelitian">Penelitian</a>
+            <a href="#/penelitian">Penelitian</a>
           </li>
           <li className="p-4 hover:text-slate-100">
-            <a href="/peralatan">Peralatan</a>
+            <a href="#/peralatan">Peralatan</a>
           </li>
           <li className="p-4 hover:text-slate-100">
-            <a href="/edukasi">Edukasi</a>
+            <a href="#/edukasi">Edukasi</a>
           </li>
           <li className="p-4 hover:text-slate-100">
-            <a href="/tentang-kami">Tentang Kami</a>
+            <a href="#/tentang-kami">Tentang Kami</a>
           </li>
         </ul>
-        <a href="/peringatan-dini">
+        <a href="#/peringatan-dini">
           <button className="hidden md:flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 bg-white h-auto text-center hover:bg-slate-100 md:w-[200px] rounded-full font-medium text-sm my-6 mx-auto px-4 py-2 text-slate-900">
             Dapatkan Peringatan Dini
           </button>
@@ -62,32 +62,32 @@ const Navbar = () => {
             />
           </a>
           <li className="p-4 border-b border-t border-white hover:text-slate-100">
-            <a href="/penelitian" onClick={handleNav}>
+            <a href="#/penelitian" onClick={handleNav}>
               Penelitian
             </a>
           </li>
           <li className="p-4 border-b border-white hover:text-slate-100">
-            <a href="/peralatan" onClick={handleNav}>
+            <a href="#/peralatan" onClick={handleNav}>
               Peralatan
             </a>
           </li>
           <li className="p-4 border-b border-white hover:text-slate-100">
-            <a href="/edukasi" onClick={handleNav}>
+            <a href="#/edukasi" onClick={handleNav}>
               Edukasi
             </a>
           </li>
           <li className="p-4 border-b border-white hover:text-slate-100">
-            <a href="/tentang-kami" onClick={handleNav}>
+            <a href="#/tentang-kami" onClick={handleNav}>
               Tentang Kami
             </a>
           </li>
           <li className="p-4 border-b border-white hover:text-slate-100">
-            <a href="/monitoring-now" onClick={handleNav}>
+            <a href="#/monitoring-now" onClick={handleNav}>
               Monitoring Now
             </a>
           </li>
           <li className="p-4 font-lg  hover:text-slate-100">
-            <a href="/peringatan-dini" onClick={handleNav}>
+            <a href="#/peringatan-dini" onClick={handleNav}>
               Dapatkan Peringatan Dini
             </a>
           </li>

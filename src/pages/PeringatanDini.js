@@ -3,7 +3,7 @@ import Peringatan from "../components/Peringatan";
 
 const PeringatanDini = () => {
   return (
-    <div>
+    <div className="animated">
       <Peringatan />
     </div>
   );

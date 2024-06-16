@@ -9,6 +9,8 @@ import rob2 from "../assets/rob2.svg";
 import ombak from "../assets/ombak.svg";
 import tujuan from "../assets/target.svg";
 import waves from "../assets/3dombak.webp";
+import buku from "../assets/buku.svg";
+import lampu from "../assets/lampu.svg";
 
 export {
   sea,
@@ -22,4 +24,6 @@ export {
   ombak,
   tujuan,
   waves,
+  lampu,
+  buku,
 };

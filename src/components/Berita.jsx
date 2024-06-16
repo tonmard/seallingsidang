@@ -25,7 +25,7 @@ const Berita = () => {
                 seperti prediksi cuaca, manajemen sumber daya kelautan, dan
                 mitigasi bencana.
               </p>
-              <a href="/edukasi">
+              <a href="#/edukasi">
                 <button className="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-10  duration-300 bg-white hover:bg-slate-950 w-44 h-10 mt-10 rounded-lg font-medium  mx-auto  text-slate-900">
                   Lihat Selengkapnya
                 </button>

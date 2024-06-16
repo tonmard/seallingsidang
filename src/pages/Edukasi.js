@@ -3,7 +3,7 @@ import Ilmu from "../components/Ilmu";
 
 const Edukasi = () => {
   return (
-    <div>
+    <div className="animated">
       <Ilmu />
     </div>
   );

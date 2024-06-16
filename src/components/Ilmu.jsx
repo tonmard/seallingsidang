@@ -1,15 +1,18 @@
 import React from "react";
-import { waves } from "../constants";
+import { lampu, waves } from "../constants";
 
 const Ilmu = () => {
   return (
     <div className="bg-white">
-      <div className="grid grid-cols-1 max-w-[1240px] w-full h-full mx-auto text-center gap-4 py-10 flex-col ">
+      <div className="grid grid-cols-1 max-w-[1240px]  w-full h-full mx-auto text-center gap-4 py-10 flex-col ">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-4 ">
-          <div className="md:col-span-2 p-8">
-            <div className="justify-center py-8  text-left text-3xl md:text-7xl text-slate-900 font-extrabold">
-              Ingin tahu lebih banyak tentang{" "}
-              <p className=" text-left text-3xl md:text-7xl text-blue-900 font-extrabold">
+          <div className="md:col-span-2 grid grid-cols-1 gap-4 md:grid-cols-3 p-8">
+            <div className=" md:py-8">
+              <img src={lampu} width={500} height={500} alt="lampu" />
+            </div>
+            <div className=" md:col-span-2 py-8 md:text-left text-4xl md:text-6xl text-slate-900 font-extrabold">
+              Ingin tahu lebih banyak tentang
+              <p className=" md:text-left text-4xl md:text-6xl text-blue-900 font-extrabold">
                 Pemantauan Air Laut?
               </p>
             </div>
