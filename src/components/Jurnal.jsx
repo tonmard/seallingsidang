@@ -5,9 +5,9 @@ const Jurnal = () => {
   return (
     <div className="bg-white animated">
       <div className="max-w-[1000px] md:max-w-[1240px] h-full mx-auto text-center flex flex-col">
-        <div className="md:grid-cols-3 py-8 px-10 m-4 text-center gap-8 bg-slate-900 text-white  h-auto rounded-lg-lg shadow-xl grid grid-cols-1">
-          <div className="py-2 hidden md:flex">
-            <img src={buku} alt="buku" height={400} width={400} />
+        <div className="md:grid-cols-3 py-8 px-10 m-4 text-center gap-8 bg-slate-900 text-white  h-auto rounded-lg shadow-lg grid grid-cols-1">
+          <div className="py-2">
+            <img src={buku} alt="buku" height="100%" width="100%" />
           </div>
           <div className=" md:col-span-2 py-14 md:text-right text-2xl  text-white font-extrabold">
             PENELITIAN

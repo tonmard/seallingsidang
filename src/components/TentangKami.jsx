@@ -99,7 +99,7 @@ const TentangKami = () => {
 
                 <div class="mt-6">
                   <h4 class="text-gray-800 text-lg font-bold">
-                    M. Fadhilla Azzam
+                    Moch. Fadhilla Azzam
                   </h4>
                   <p class="text-sm text-gray-600 mt-1">Software Engineer</p>
 
@@ -168,7 +168,7 @@ const TentangKami = () => {
                   <h4 class="text-gray-800 text-lg font-bold">
                     Tony Mardyansyah
                   </h4>
-                  <p class="text-sm text-gray-600 mt-1">Full-stack Website</p>
+                  <p class="text-sm text-gray-600 mt-1">Front-End Developer</p>
 
                   <div class="space-x-4 mt-6">
                     <button
@@ -305,7 +305,7 @@ const TentangKami = () => {
                     <h4 class="text-gray-800 text-lg font-bold">
                       Sulthan Kareem A.
                     </h4>
-                    <p class="text-sm text-gray-600 mt-1">Back-End Website</p>
+                    <p class="text-sm text-gray-600 mt-1">Back-End Developer</p>
 
                     <div class="space-x-4 mt-6">
                       <button
