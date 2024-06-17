@@ -1,5 +1,5 @@
 import React from "react";
-import { tujuan, waves } from "../constants";
+import { pptony, tujuan } from "../constants";
 
 const TentangKami = () => {
   return (
@@ -158,7 +158,7 @@ const TentangKami = () => {
               <div class="bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all duration-500">
                 <div class="lg:min-h-[250px]">
                   <img
-                    src={waves}
+                    src={pptony}
                     class="w-full rounded-lg inline-block"
                     alt=""
                   />
