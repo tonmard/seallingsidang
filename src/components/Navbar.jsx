@@ -37,7 +37,7 @@ const Navbar = () => {
           </li>
         </ul>
         <a href="#/peringatan-dini">
-          <button className="hidden md:flex transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105  duration-300 bg-white h-auto text-center hover:bg-slate-100 md:w-[200px] rounded-full font-medium text-sm my-6 mx-auto px-4 py-2 text-slate-900">
+          <button className="hidden md:flex hover:-translate-y-1 hover:scale-105  duration-300 bg-white h-auto text-center hover:bg-slate-100 md:w-[200px] rounded-full font-medium text-sm my-6 mx-auto px-4 py-2 text-slate-900">
             Dapatkan Peringatan Dini
           </button>
         </a>

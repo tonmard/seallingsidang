@@ -112,7 +112,7 @@ const Alat = () => {
                   </dd>
                 </div>
               </dl>
-              <div class="mt-8 max-w-[200px]  bg-slate-900 text-center rounded-lg shadow-lg">
+              <div class="mt-8 max-w-[200px] hover:scale-105 transition-all duration-500 bg-slate-900 text-center rounded-lg shadow-lg">
                 <a
                   href="#/peralatan"
                   class="text-base font-semibold leading-7 text-white"

@@ -34,7 +34,7 @@ const TentangKami = () => {
 
             <button
               type="button"
-              className="py-3 px-4 text-sm font-semibold rounded-lg shadow-lg bg-white text-slate-900 hover:bg-slate-100 mt-8"
+              className="py-3 px-4 text-sm hover:scale-105 transition-all duration-500 font-semibold rounded-lg shadow-lg bg-white text-slate-900 hover:bg-slate-100 mt-8"
             >
               Lihat Selengkapnya
             </button>

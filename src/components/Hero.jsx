@@ -32,7 +32,7 @@ const Hero = () => {
         </div>
 
         <a href="#/monitoring-now">
-          <button className="transition ease-in-out delay-150 justify-center hover:-translate-y-1 hover:scale-10  duration-300 bg-white hover:bg-slate-100 w-[250px] rounded-full font-medium my-6 mx-auto p-3 text-slate-900">
+          <button className="ease-in-out delay-150 justify-center hover:scale-105 transition-all duration-500 bg-white hover:bg-slate-100 w-[250px] rounded-full font-medium my-6 mx-auto p-3 text-slate-900">
             Monitoring Now!
           </button>
         </a>
