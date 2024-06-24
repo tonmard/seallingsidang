@@ -1,5 +1,5 @@
 import React from "react";
-import { pptony, tujuan } from "../constants";
+import { pptony, tujuan, waves } from "../constants";
 
 const TentangKami = () => {
   return (
@@ -91,7 +91,7 @@ const TentangKami = () => {
               <div class="bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all duration-500">
                 <div class="lg:min-h-[250px]">
                   <img
-                    src="https://readymadeui.com/team-1.webp"
+                    src={waves}
                     class="w-full rounded-lg inline-block"
                     alt=""
                   />
@@ -225,7 +225,7 @@ const TentangKami = () => {
               <div class="bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all duration-500">
                 <div class="lg:min-h-[250px]">
                   <img
-                    src="https://readymadeui.com/team-3.webp"
+                    src={waves}
                     class="w-full rounded-lg inline-block"
                     alt=""
                   />
@@ -294,11 +294,7 @@ const TentangKami = () => {
               <div class="justify-center md:flex text-center">
                 <div class=" bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all duration-500 mb-6">
                   <div class="h-auto w-auto md:max-h-[250px] md:max-w-[250px] rounded-lg">
-                    <img
-                      src="https://readymadeui.com/team-2.webp"
-                      class="h-full w-full rounded-lg "
-                      alt=""
-                    />
+                    <img src={waves} class="h-full w-full rounded-lg " alt="" />
                   </div>
 
                   <div class="mt-6">
@@ -361,11 +357,7 @@ const TentangKami = () => {
                 </div>
                 <div class=" bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all md:ml-20 duration-500 mb-6">
                   <div class="h-auto w-auto md:max-h-[250px] md:max-w-[250px]">
-                    <img
-                      src="https://readymadeui.com/team-3.webp"
-                      class="h-full w-full rounded-lg"
-                      alt=""
-                    />
+                    <img src={waves} class="h-full w-full rounded-lg" alt="" />
                   </div>
 
                   <div class="mt-6">
