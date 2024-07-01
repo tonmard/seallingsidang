@@ -2,7 +2,7 @@ import React from "react";
 
 const CardData = ({ title, total, rate, levelUp, levelDown }) => {
   return (
-    <div className="rounded-lg hover:scale-105 duration-300 cursor-grabbing border-l-[15px] border-slate-900 w-auto border-stroke p-6 shadow-lg ">
+    <div className="rounded-lg  border-l-[15px] border-slate-900 w-auto border-stroke p-6 shadow-lg ">
       <div className=" flex w-full justify-between">
         <div>
           <h4 className="text-title-md font-bold text-slate-900">{total}</h4>

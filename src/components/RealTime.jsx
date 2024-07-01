@@ -24,21 +24,10 @@ const RealTime = () => {
           DASHBOARD MONITORING LEVEL AIR LAUT
         </h1>
       </header>
-      <div className="px-8 mb-8 ">
-        <label className="text-base font-semibold  " for="wilayah">
-          Pilih Wilayah:
-        </label>
-        <select
-          className="border border-collapse ml-2  rounded-lg px-2"
-          id="wilayah"
-        >
-          <option value="wilayah1">-----------Pilih Wilayah----------</option>
-          <option value="wilayah2">Semarang - Rumah Pompa KITS</option>
-        </select>
-      </div>
+
       <div className="bg-white  shadow-md rounded p-4">
         <h1 className="text-slate-900 font-bold text-2xl md:text-4xl mb-4 pt-4 pb-4 ">
-          Semarang - Rumah Pompa KITS
+          Universitas Telkom - Bandung
         </h1>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
           <CardData title="Hari ini" total="20 cm" rate="0.43%" levelUp>
