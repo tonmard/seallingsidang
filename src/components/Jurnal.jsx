@@ -20,106 +20,98 @@ const Jurnal = () => {
       <div class="bg-white font-[sans-serif] p-10 mb-14">
         <div class="max-w-6xl max-md:max-w-lg mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-            <div class="flex max-lg:flex-col bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-all duration-300">
-              <img
-                src={waves}
-                alt="Blog Post 1"
-                class="lg:w-2/5 min-h-[250px] h-full hidden md:flex object-cover"
-              />
-              <div class="p-6 lg:w-3/5">
-                <h3 class="text-xl font-bold text-[#333]">
-                  A Guide to Igniting Your Imagination
-                </h3>
-                <span class="text-sm block text-gray-400 mt-2">
-                  10 FEB 2023 | BY JOHN DOE
-                </span>
-                <p class="text-sm mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                  accumsan, nunc et tempus blandit.
-                </p>
-                <a
-                  href="/"
-                  class="mt-4 inline-block text-blue-600 text-sm hover:underline"
-                >
-                  Read More
-                </a>
+            <a href="https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/12302/12081">
+              <div class="flex max-lg:flex-col bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-all duration-300">
+                <img
+                  src={waves}
+                  alt="Blog Post 1"
+                  class="lg:w-2/5 min-h-[250px] h-full hidden md:flex object-cover"
+                />
+                <div class="p-6 lg:w-3/5">
+                  <h3 class="text-base font-bold text-[#333]">
+                    Sistem Monitoring Ketinggian Permukaan Air Laut Menggunakan
+                    Accelerometer Berbasis Iot
+                  </h3>
+                  <span class="text-xs block text-gray-400 mt-2">
+                    AUG 2020 | BY TELKOM UNIVERSITY
+                  </span>
+                  <p class="text-sm mt-2">
+                    Sistem monitoring yang dilakukan adalah dengan menggunakan
+                    sensor accelerometer sebagai pendeteksi posisi.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="flex max-lg:flex-col bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-all duration-300">
-              <img
-                src={waves}
-                alt="Blog Post 2"
-                class="lg:w-2/5 min-h-[250px] h-full hidden md:flex object-cover"
-              />
-              <div class="p-6 lg:w-3/5">
-                <h3 class="text-xl font-bold text-[#333]">
-                  Hacks to Supercharge Your Day
-                </h3>
-                <span class="text-sm block text-gray-400 mt-2">
-                  7 JUN 2023 | BY MARK ADAIR
-                </span>
-                <p class="text-sm mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                  accumsan, nunc et tempus blandit.
-                </p>
-                <a
-                  href="/"
-                  class="mt-4 inline-block text-blue-600 text-sm hover:underline"
-                >
-                  Read More
-                </a>
+            </a>
+
+            <a href="https://e-journals.dinamika.ac.id/joti/article/view/573/408">
+              <div class="flex max-lg:flex-col bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-all duration-300">
+                <img
+                  src={waves}
+                  alt="Blog Post 2"
+                  class="lg:w-2/5 min-h-[250px] h-full hidden md:flex object-cover"
+                />
+                <div class="p-6 lg:w-3/5">
+                  <h3 class="text-base font-bold text-[#333]">
+                    Pengembangan Sistem Monitoring Pasang Surut Air Laut Untuk
+                    Perancangan Pengembangan Sebuah Pelabuhan
+                  </h3>
+                  <span class="text-xs block text-gray-400 mt-2">
+                    APR 2024 | BY UNIVERSITAS TIDAR
+                  </span>
+                  <p class="text-sm mt-2">
+                    Penelitian ini adalah sistem monitoring pasang surut air
+                    laut di pelabuhan menggunakan mikrokontroller ESP32 Cam.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="flex max-lg:flex-col bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-all duration-300">
-              <img
-                src={waves}
-                alt="Blog Post 2"
-                class="lg:w-2/5 min-h-[250px] h-full hidden md:flex object-cover"
-              />
-              <div class="p-6 lg:w-3/5">
-                <h3 class="text-xl font-bold text-[#333]">
-                  Trends and Predictions
-                </h3>
-                <span class="text-sm block text-gray-400 mt-2">
-                  5 OCT 2023 | BY SIMON KONECKI
-                </span>
-                <p class="text-sm mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                  accumsan, nunc et tempus blandit.
-                </p>
-                <a
-                  href="/"
-                  class="mt-4 inline-block text-blue-600 text-sm hover:underline"
-                >
-                  Read More
-                </a>
+            </a>
+
+            <a href="https://jurnal.unived.ac.id/index.php/jmi/article/view/4422/3675">
+              <div class="flex max-lg:flex-col bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-all duration-300">
+                <img
+                  src={waves}
+                  alt="Blog Post 2"
+                  class="lg:w-2/5 min-h-[250px] h-full hidden md:flex object-cover"
+                />
+                <div class="p-6 lg:w-3/5">
+                  <h3 class="text-base font-bold text-[#333]">
+                    Sistem Monitoring Ketinggian Ombak Air Laut Secara Real-Time
+                    Berbasis IoT
+                  </h3>
+                  <span class="text-xs block text-gray-400 mt-2">
+                    OCT 2023 | BY UNIVERSITAS DEHASEN
+                  </span>
+                  <p class="text-sm mt-2">
+                    Maka pada penelitian ini peneliti akan menggunakan sistem
+                    IoTdalam monitoring ketinggian ombak air laut secara
+                    real-time berbasis IoT.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="flex max-lg:flex-col bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-all duration-300">
-              <img
-                src={waves}
-                alt="Blog Post 2"
-                class="lg:w-2/5 min-h-[250px] h-full hidden md:flex object-cover"
-              />
-              <div class="p-6 lg:w-3/5">
-                <h3 class="text-xl font-bold text-[#333]">
-                  Innovators Changing the Game
-                </h3>
-                <span class="text-sm block text-gray-400 mt-2">
-                  10 DEC 2023 | BY SIMON KONECKI
-                </span>
-                <p class="text-sm mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                  accumsan, nunc et tempus blandit.
-                </p>
-                <a
-                  href="/"
-                  class="mt-4 inline-block text-blue-600 text-sm hover:underline"
-                >
-                  Read More
-                </a>
+            </a>
+            <a href="https://jurnal.unimor.ac.id/index.php/JITU/article/view/3254/1065">
+              <div class="flex max-lg:flex-col bg-white cursor-pointer rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-all duration-300">
+                <img
+                  src={waves}
+                  alt="Blog Post 2"
+                  class="lg:w-2/5 min-h-[250px] h-full hidden md:flex object-cover"
+                />
+                <div class="p-6 lg:w-3/5">
+                  <h3 class="text-base font-bold text-[#333]">
+                    Sistem Monitoring Pasang Surut Air Laut Berbasis Web
+                    Menggunakan Fuzzy Logic Pada Kuala Langsa
+                  </h3>
+                  <span class="text-xs block text-gray-400 mt-2">
+                    SEP 2022 | BY UNIVERSITAS SAMUDRA
+                  </span>
+                  <p class="text-sm mt-2">
+                    Menggunakan Sensor Ultrasonik dan nodeMCU pada Kuala Langsa
+                    dan hasil monitoring akan ditampilkan pada sebuah halaman
+                    Web.
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

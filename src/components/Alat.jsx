@@ -49,7 +49,7 @@ const Alat = () => {
                 </figure>
               </div>
             </div>
-            <div className="p-4  h-auto">
+            <div className="p-10  h-auto">
               <div class="text-base text-gray-700 w-auto lg:max-w-full">
                 <p class="text-base font-semibold leading-7 text-slate-900">
                   PERALATAN
@@ -83,7 +83,7 @@ const Alat = () => {
                   <dt class="text-sm font-semibold leading-6 text-gray-600">
                     Sensor
                   </dt>
-                  <dd class="mt-2 text-xl font-bold leading-10 tracking-tight text-gray-900">
+                  <dd class="mt-2 text-lg font-bold leading-10 tracking-tight text-gray-900">
                     5 Unit
                   </dd>
                 </div>
@@ -91,7 +91,7 @@ const Alat = () => {
                   <dt class="text-sm font-semibold leading-6 text-gray-600">
                     Sumber Daya
                   </dt>
-                  <dd class="mt-2 text-xl font-bold leading-10 tracking-tight text-gray-900">
+                  <dd class="mt-2 text-lg font-bold leading-10 tracking-tight text-gray-900">
                     Panel Surya
                   </dd>
                 </div>
@@ -99,7 +99,7 @@ const Alat = () => {
                   <dt class="text-sm font-semibold leading-6 text-gray-600">
                     Peringatan Dini
                   </dt>
-                  <dd class="mt-2 text-xl font-bold leading-10 tracking-tight text-gray-900">
+                  <dd class="mt-2 text-lg font-bold leading-10 tracking-tight text-gray-900">
                     Email
                   </dd>
                 </div>
@@ -107,20 +107,11 @@ const Alat = () => {
                   <dt class="text-sm font-semibold leading-6 text-gray-600">
                     Monitoring
                   </dt>
-                  <dd class="mt-2 text-xl font-bold leading-10 tracking-tight text-gray-900">
+                  <dd class="mt-2 text-lg font-bold leading-10 tracking-tight text-gray-900">
                     Website
                   </dd>
                 </div>
               </dl>
-              <div class="mt-8 max-w-[200px] hover:scale-105 transition-all duration-500 bg-slate-900 text-center rounded-lg shadow-lg">
-                <a
-                  href="#/peralatan"
-                  class="text-base font-semibold leading-7 text-white"
-                >
-                  Lihat Selengkapnya
-                  <span aria-hidden="true">&rarr;</span>
-                </a>
-              </div>
             </div>
           </div>
         </div>
