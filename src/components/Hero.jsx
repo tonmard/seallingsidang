@@ -31,7 +31,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <a href="#/monitoring-now">
+        <a href="/monitoring-now">
           <button className="ease-in-out delay-150 justify-center hover:scale-105 transition-all duration-500 bg-white hover:bg-slate-100 w-[250px] rounded-full font-medium my-6 mx-auto p-3 text-slate-900">
             Monitoring Now!
           </button>

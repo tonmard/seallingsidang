@@ -19,30 +19,30 @@ const Navbar = () => {
   return (
     <div className="block top-0 left-0 w-full bg-slate-900">
       <div className="flex font-md justify-between items-center h-24 max-w-[1240px] mx-auto px-4 py-4 text-white hover-lg">
-        <a className="block w-[10rem] xl:mr-8" href="/sealling2.github.io">
+        <a className="block w-[10rem] xl:mr-8" href="/">
           <img src={logof} width={160} height={30} alt="sea" />
         </a>
-        <ul className="hidden md:flex text-white">
+        <ul className="hidden lg:flex text-white">
           <li className="p-4 hover:text-slate-100">
-            <a href="#/penelitian">Penelitian</a>
+            <a href="/penelitian">Penelitian</a>
           </li>
           <li className="p-4 hover:text-slate-100">
-            <a href="#/peralatan">Peralatan</a>
+            <a href="/peralatan">Peralatan</a>
           </li>
           <li className="p-4 hover:text-slate-100">
-            <a href="#/edukasi">Edukasi</a>
+            <a href="/edukasi">Edukasi</a>
           </li>
           <li className="p-4 hover:text-slate-100">
-            <a href="#/tentang-kami">Tentang Kami</a>
+            <a href="/tentang-kami">Tentang Kami</a>
           </li>
         </ul>
-        <a href="#/peringatan-dini">
-          <button className="hidden md:flex hover:-translate-y-1 hover:scale-105  duration-300 bg-white h-auto text-center hover:bg-slate-100 md:w-[200px] rounded-full font-medium text-sm my-6 mx-auto px-4 py-2 text-slate-900">
+        <a href="/peringatan-dini">
+          <button className="hidden lg:flex hover:-translate-y-1 hover:scale-105  duration-300 bg-white h-auto text-center hover:bg-slate-100 md:w-[200px] rounded-full font-medium text-sm my-6 mx-auto px-4 py-2 text-slate-900">
             Dapatkan Peringatan Dini
           </button>
         </a>
 
-        <div onClick={handleNav} className="block md:hidden">
+        <div onClick={handleNav} className="block lg:hidden">
           {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>
         <ul
@@ -52,10 +52,7 @@ const Navbar = () => {
               : "ease-in-out duration-500 fixed left-[-100%] "
           }
         >
-          <a
-            className="block pt-4 w-[10rem] xl:mr-8 mb-10"
-            href="/sealling2.github.io"
-          >
+          <a className="block pt-4 w-[10rem] xl:mr-8 mb-10" href="/">
             <img
               onClick={handleNav}
               src={logof}
@@ -65,32 +62,32 @@ const Navbar = () => {
             />
           </a>
           <li className="p-4 border-b border-t border-white hover:text-slate-100">
-            <a href="#/penelitian" onClick={handleNav}>
+            <a href="/penelitian" onClick={handleNav}>
               Penelitian
             </a>
           </li>
           <li className="p-4 border-b border-white hover:text-slate-100">
-            <a href="#/peralatan" onClick={handleNav}>
+            <a href="/peralatan" onClick={handleNav}>
               Peralatan
             </a>
           </li>
           <li className="p-4 border-b border-white hover:text-slate-100">
-            <a href="#/edukasi" onClick={handleNav}>
+            <a href="/edukasi" onClick={handleNav}>
               Edukasi
             </a>
           </li>
           <li className="p-4 border-b border-white hover:text-slate-100">
-            <a href="#/tentang-kami" onClick={handleNav}>
+            <a href="/tentang-kami" onClick={handleNav}>
               Tentang Kami
             </a>
           </li>
           <li className="p-4 border-b border-white hover:text-slate-100">
-            <a href="#/monitoring-now" onClick={handleNav}>
+            <a href="/monitoring-now" onClick={handleNav}>
               Monitoring Now
             </a>
           </li>
           <li className="p-4 font-lg  hover:text-slate-100">
-            <a href="#/peringatan-dini" onClick={handleNav}>
+            <a href="/peringatan-dini" onClick={handleNav}>
               Dapatkan Peringatan Dini
             </a>
           </li>

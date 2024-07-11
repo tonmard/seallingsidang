@@ -5,14 +5,14 @@ const Ilmu = () => {
   return (
     <div className="bg-white">
       <div className="grid grid-cols-1 max-w-[1240px]  w-full h-full mx-auto text-center gap-4 py-10 flex-col ">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-4 ">
-          <div className="md:col-span-2 grid grid-cols-1 gap-4 md:grid-cols-3 p-8">
-            <div className=" md:py-8">
-              <img src={lampu} width={500} height={500} alt="lampu" />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 m-4 ">
+          <div className="lg:col-span-2 grid grid-cols-1 mx-auto gap-4 lg:grid-cols-3 p-8">
+            <div className=" lg:py-8 ">
+              <img src={lampu} width={600} height={500} alt="lampu" />
             </div>
-            <div className=" md:col-span-2 py-8 md:text-left text-4xl md:text-6xl text-slate-900 font-extrabold">
+            <div className=" lg:col-span-2 py-8 lg:text-left text-4xl lg:text-6xl text-slate-900 font-extrabold">
               Ingin tahu lebih banyak tentang
-              <p className=" md:text-left text-4xl md:text-6xl text-blue-900 font-extrabold">
+              <p className=" lg:text-left text-4xl lg:text-6xl text-blue-900 font-extrabold">
                 Pemantauan Air Laut?
               </p>
             </div>
@@ -28,7 +28,7 @@ const Ilmu = () => {
                 gelombang tinggi.
               </p>
             </div>
-            <div className="py-4 px-2 rounded-lg shadow-lg w-auto h-auto bg-slate-900 text-white">
+            <div className="py-4 mt-4 px-2 rounded-lg shadow-lg w-auto h-auto bg-slate-900 text-white">
               <div className="text-white underline font-serif text-lg font-lg justify-center">
                 Bagaimana proses terjadinya banjir rob?
               </div>
@@ -44,18 +44,18 @@ const Ilmu = () => {
           </div>
         </div>
 
-        <div class="max-w-md mx-4 lg:max-w-[1240px] bg-slate-900 rounded-xl shadow-xl overflow-hidden ">
+        <div class=" mx-4 max-w-[1240px] bg-slate-900 rounded-xl shadow-xl overflow-hidden ">
           <div class="md:flex ">
             <div class=" md:justify-center">
               <img
-                class="h-48 w-full object-cover md:h-[300px] md:w-[1000px]"
+                class="h-48 w-full object-cover md:h-[330px] md:w-[1000px] "
                 src={waves}
                 alt="Modern building architecture"
               />
             </div>
-            <div class="p-8 md:max-w-[800px]">
+            <div class="p-8 md:max-w-[800px] ">
               <div className="justify-between py-2 text-center md:text-right">
-                <h3 class="text-2xl md:text-4xl font-extrabold underline mb-6 text-white font-serif ">
+                <h3 class="text-2xl md:text-3xl lg:text-4xl font-extrabold underline mb-6 text-white font-serif ">
                   Dampak banjir rob?
                 </h3>
                 <p class="mt-2 text-gray-200 text-base">
@@ -72,18 +72,18 @@ const Ilmu = () => {
             </div>
           </div>
         </div>
-        <div class="max-w-md mx-4 mt-6 lg:max-w-[1240px] bg-slate-900 rounded-xl shadow-xl overflow-hidden ">
+        <div class=" mx-4 mt-6 lg:max-w-[1240px] bg-slate-900 rounded-xl shadow-xl overflow-hidden ">
           <div class="md:flex ">
             <div class=" md:justify-center">
               <img
-                class="h-48 w-full object-cover md:h-[300px] md:w-[1000px]"
+                class="h-48 w-full object-cover md:h-[330px] md:w-[1000px]"
                 src={waves}
                 alt="Modern building architecture"
               />
             </div>
             <div class="p-8 md:max-w-[800px]">
               <div className="justify-between py-2 text-center md:text-right">
-                <h3 class="text-2xl md:text-4xl font-extrabold underline mb-6 text-white font-serif ">
+                <h3 class="text-2xl md:text-3xl lg:text-4xl  font-extrabold underline mb-6 text-white font-serif ">
                   Manfaat pemantauan air laut?
                 </h3>
                 <p class="mt-2 text-gray-200 text-base">

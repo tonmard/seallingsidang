@@ -22,16 +22,16 @@ const Footer = () => {
             <h6 className="font-medium text-gray-400">Navigator</h6>
             <ul>
               <li className="py-2 text-sm hover:text-white">
-                <a href="#/penelitian">Penelitian</a>
+                <a href="/penelitian">Penelitian</a>
               </li>
               <li className="py-2 text-sm hover:text-white">
-                <a href="#/peralatan">Peralatan</a>
+                <a href="/peralatan">Peralatan</a>
               </li>
               <li className="py-2 text-sm hover:text-white">
-                <a href="#/edukasi">Edukasi</a>
+                <a href="/edukasi">Edukasi</a>
               </li>
               <li className="py-2 text-sm hover:text-white">
-                <a href="#/tentang-kami">Tentang Kami</a>
+                <a href="/tentang-kami">Tentang Kami</a>
               </li>
             </ul>
           </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import Hero from "../components/Hero";
-import Berita from "../components/Berita";
 import Fitur from "../components/Fitur";
 
 const Home = () => {
@@ -8,7 +7,6 @@ const Home = () => {
     <div className="animated">
       <Hero />
       <Fitur />
-      <Berita />
     </div>
   );
 };

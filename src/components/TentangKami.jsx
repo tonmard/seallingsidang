@@ -39,7 +39,7 @@ const TentangKami = () => {
         </div>
         <div class="container mx-auto py-10">
           <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-5xl text-slate-900 font-extrabold mb-4">
+            <h1 class="text-3xl lg:text-5xl text-slate-900 font-extrabold mb-4">
               Mengapa Monitoring Level Air Laut Penting?
             </h1>
           </div>

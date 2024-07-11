@@ -6,7 +6,7 @@ const Alat = () => {
     <div className="bg-white">
       <div class="bg-white py-24">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-          <div class="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 lg:gap-x-0 gap-y-16 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div class="mx-auto grid max-w-2xl grid-cols-1 items-start gap-x-8 lg:gap-x-0 gap-y-16 md:gap-y-12 sm:gap-y-24 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div class="w-auto">
               <div class="relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-64 h-auto shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
                 <img

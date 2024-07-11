@@ -7,14 +7,8 @@ const RealTime = () => {
 
   useEffect(() => {
     // Simulasi pengumpulan data
-    const interval = setInterval(() => {
-      const newData = Array.from({ length: 10 }, () =>
-        Math.floor(Math.random() * 100)
-      );
-      setData(newData);
-    }, 1000);
-
-    return () => clearInterval(interval);
+    const staticData = [23, 45, 56, 78, 89, 90, 65, 43, 23, 67];
+    setData(staticData);
   }, []);
 
   return (
@@ -72,7 +66,7 @@ const RealTime = () => {
               />
             </svg>
           </CardData>
-          <CardData title="30 Hari Terakhir" total="50 cm" rate="2.59%" levelUp>
+          <CardData title="30 Hari Terakhir" total="20 cm" rate="2.59%" levelUp>
             <svg
               className="fill-primary dark:fill-white"
               width="22"
@@ -119,14 +113,6 @@ const RealTime = () => {
                   data={[
                     {
                       x: Array.from({ length: data.length }, (_, i) => i),
-                      y: data,
-                      type: "scatter",
-                      mode: "lines+markers",
-                      marker: { color: "blue" },
-                      name: "Sensor Level",
-                    },
-                    {
-                      x: Array.from({ length: data.length }, (_, i) => i),
                       y: data.map((d) => d - 20),
                       type: "scatter",
                       mode: "lines+markers",
@@ -152,7 +138,7 @@ const RealTime = () => {
             <div className="mt-4">
               <div className="max-w-[800px] rounded-lg  shadow-lg border border-stroke  ">
                 <header className="warning-page text-xl font-bold">
-                  Tekanan Air Laut
+                  Suhu Laut
                 </header>
                 <div className="mx-4">
                   {" "}
@@ -216,7 +202,20 @@ const RealTime = () => {
                 </div>
               </div>
             </div>
+            <div className="rounded-lg mt-4 shadow-lg  w-full max-w-[500px] ">
+              <div class="warning-header text-base font-bold">
+                <h2>Baterai</h2>
+              </div>
+              <div class="warning-content">
+                <div class="warning-level">
+                  <span class="icon">
+                    ⚠️<span>Major</span>
+                  </span>
 
+                  <span class="time-ago">⏰ 12 Juli 2024</span>
+                </div>
+              </div>
+            </div>
             <div className=" mt-4 max-w-[400px]  bg-white w-auto h-auto  rounded-lg border shadow-lg">
               <div className="warning-page text-base font-bold  text-slate-900 mb-4">
                 Lokasi
@@ -226,7 +225,7 @@ const RealTime = () => {
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63360.366282956194!2d107.63940574009342!3d-7.006587075948274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e9adf177bf8d%3A0x437398556f9fa03!2sUniversitas%20Telkom!5e0!3m2!1sid!2sid!4v1718549027955!5m2!1sid!2sid"
                     width="100% "
-                    height="350"
+                    height="250"
                     style={{
                       color: "red",
                       fontSize: "16px", // Pastikan nilai properti style adalah objek
