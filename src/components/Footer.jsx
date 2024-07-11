@@ -2,6 +2,7 @@ import React from "react";
 import {
   FaGoogle,
   FaInstagram,
+  FaLinkedin,
   FaMapPin,
   FaTwitterSquare,
 } from "react-icons/fa";
@@ -40,7 +41,7 @@ const Footer = () => {
             <div className="flex justify-between md:w-[100%] my-6 ">
               <FaGoogle size={30} />
               <FaInstagram size={30} />
-              <FaTwitterSquare size={30} />
+              <FaLinkedin size={30} />
             </div>
           </div>
           <div>
