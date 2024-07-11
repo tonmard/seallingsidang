@@ -1,14 +1,53 @@
 import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
-import CardData from "./CardData";
+import CardData from "./design/CardData";
+import BatteryInfo from "./BatteryInfo";
 
 const RealTime = () => {
   const [data, setData] = useState([]);
+
+  const initialBatteryInfo = { level: 0, charging: false, supported: true };
+
+  const [batteryInfo, setBatteryInfo] = useState(initialBatteryInfo);
+  // Update the battery info
+  const updateBatteryInfo = (battery) => {
+    setBatteryInfo({
+      level: battery.level * 100,
+      charging: battery.charging,
+      supported: true,
+    });
+  };
 
   useEffect(() => {
     // Simulasi pengumpulan data
     const staticData = [23, 45, 56, 78, 89, 90, 65, 43, 23, 67];
     setData(staticData);
+
+    const checkBatteryAPIAndSetup = async () => {
+      if (navigator.getBattery) {
+        try {
+          // Get the battery status
+          const battery = await navigator.getBattery();
+          updateBatteryInfo(battery);
+
+          // Setup the event listeners for the battery status changes
+          battery.addEventListener("chargingchange", () =>
+            updateBatteryInfo(battery)
+          );
+          battery.addEventListener("levelchange", () =>
+            updateBatteryInfo(battery)
+          );
+        } catch (error) {
+          console.error("Battery status is not supported.");
+          setBatteryInfo((prev) => ({ ...prev, supported: false }));
+        }
+      } else {
+        console.error("Battery status is not supported.");
+        setBatteryInfo((prev) => ({ ...prev, supported: false }));
+      }
+    };
+
+    checkBatteryAPIAndSetup();
   }, []);
 
   return (
@@ -202,17 +241,26 @@ const RealTime = () => {
                 </div>
               </div>
             </div>
+
             <div className="rounded-lg mt-4 shadow-lg  w-full max-w-[500px] ">
               <div class="warning-header text-base font-bold">
                 <h2>Baterai</h2>
               </div>
               <div class="warning-content">
                 <div class="warning-level">
-                  <span class="icon">
-                    ⚠️<span>Major</span>
-                  </span>
-
-                  <span class="time-ago">⏰ 12 Juli 2024</span>
+                  <div className="flex items-center justify-center mx-auto">
+                    <div className="text-center">
+                      {batteryInfo.supported ? (
+                        <div className="flex flex-col items-center justify-center space-y-2">
+                          <BatteryInfo batteryInfo={batteryInfo} />
+                        </div>
+                      ) : (
+                        <div className="p-4 rounded-md bg-gray-200 text-gray-700">
+                          Battery status is not supported in this browser.
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
