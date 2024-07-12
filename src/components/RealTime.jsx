@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
 import CardData from "./design/CardData";
 import BatteryInfo from "./BatteryInfo";
+import { FaDownload } from "react-icons/fa";
 
 const RealTime = () => {
   const [data, setData] = useState([]);
@@ -12,7 +13,7 @@ const RealTime = () => {
   // Update the battery info
   const updateBatteryInfo = (battery) => {
     setBatteryInfo({
-      level: battery.level * 100,
+      level: 0.1 * 100,
       charging: battery.charging,
       supported: true,
     });
@@ -185,14 +186,9 @@ const RealTime = () => {
                     <div>
                       <p className="text-gray-600">⏰ 17 Juni 2024</p>
                     </div>
-                    <select
-                      className="border border-collapse ml-2 px-2 rounded-lg p-0"
-                      id="waktu"
-                    >
-                      <option value="hariini">Hari ini</option>
-                      <option value="mingguini">Minggu ini</option>
-                      <option value="bulanini">Bulan ini</option>
-                    </select>
+                    <a href="/">
+                      <FaDownload size={20} />
+                    </a>
                   </div>
                   <Plot
                     className="flex w-full  h-[300px]"
@@ -248,7 +244,7 @@ const RealTime = () => {
               </div>
               <div class="warning-content">
                 <div class="warning-level">
-                  <div className="flex items-center justify-center mx-auto">
+                  <div className="flex items-center justify-center  mx-auto">
                     <div className="text-center">
                       {batteryInfo.supported ? (
                         <div className="flex flex-col items-center justify-center space-y-2">

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  FaGoogle,
-  FaInstagram,
-  FaLinkedin,
-  FaMapPin,
-  FaTwitterSquare,
-} from "react-icons/fa";
+import { FaGoogle, FaInstagram, FaLinkedin, FaMapPin } from "react-icons/fa";
 import { logof } from "../constants";
 
 const Footer = () => {
@@ -13,7 +7,7 @@ const Footer = () => {
     <div className="block top-0 left-0 w-full bg-slate-900">
       <div className="max-w-[1240px]  mx-auto py-8 px-4 grid lg:grid-cols-3 gap-8 text-gray-300">
         <div>
-          <a className="block w-[10rem] xl:mr-8" href="/sealling2.github.io">
+          <a className="block w-[10rem] xl:mr-8" href="/">
             <img src={logof} width={240} height={60} alt="sea" />
           </a>
           <p className="py-4">Copyright © Sealling 2024.</p>
@@ -39,9 +33,15 @@ const Footer = () => {
           <div>
             <h6 className="font-medium px-5 text-gray-400">Contact Us</h6>
             <div className="flex justify-between md:w-[100%] my-6 ">
-              <FaGoogle size={30} />
-              <FaInstagram size={30} />
-              <FaLinkedin size={30} />
+              <a href="/">
+                <FaGoogle size={30} />
+              </a>
+              <a href="/">
+                <FaInstagram size={30} />
+              </a>
+              <a href="/">
+                <FaLinkedin size={30} />
+              </a>
             </div>
           </div>
           <div>
