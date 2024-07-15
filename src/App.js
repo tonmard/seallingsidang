@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Edukasi from "./pages/Edukasi";
 import Penelitian from "./pages/Penelitian";
 import Peralatan from "./pages/Peralatan";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/edukasi" element={<Edukasi />} />
         <Route path="/penelitian" element={<Penelitian />} />
         <Route path="/peralatan" element={<Peralatan />} />
+        <Route path="/pengaturan" element={<Settings />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

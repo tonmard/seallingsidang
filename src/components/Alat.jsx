@@ -83,7 +83,7 @@ const Alat = () => {
                   <dt class="text-sm font-semibold leading-6 text-gray-600">
                     Sensor
                   </dt>
-                  <dd class="mt-2 text-lg font-bold leading-10 tracking-tight text-gray-900">
+                  <dd class="mt-2 text-base font-bold leading-10 tracking-tight text-gray-900">
                     5 Unit
                   </dd>
                 </div>
@@ -91,7 +91,7 @@ const Alat = () => {
                   <dt class="text-sm font-semibold leading-6 text-gray-600">
                     Sumber Daya
                   </dt>
-                  <dd class="mt-2 text-lg font-bold leading-10 tracking-tight text-gray-900">
+                  <dd class="mt-2 text-base font-bold leading-10 tracking-tight text-gray-900">
                     Panel Surya
                   </dd>
                 </div>
@@ -99,7 +99,7 @@ const Alat = () => {
                   <dt class="text-sm font-semibold leading-6 text-gray-600">
                     Peringatan Dini
                   </dt>
-                  <dd class="mt-2 text-lg font-bold leading-10 tracking-tight text-gray-900">
+                  <dd class="mt-2 text-base font-bold leading-10 tracking-tight text-gray-900">
                     Email
                   </dd>
                 </div>
@@ -107,7 +107,7 @@ const Alat = () => {
                   <dt class="text-sm font-semibold leading-6 text-gray-600">
                     Monitoring
                   </dt>
-                  <dd class="mt-2 text-lg font-bold leading-10 tracking-tight text-gray-900">
+                  <dd class="mt-2 text-base font-bold leading-10 tracking-tight text-gray-900">
                     Website
                   </dd>
                 </div>

@@ -2,20 +2,18 @@ import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
 import CardData from "./design/CardData";
 import BatteryInfo from "./BatteryInfo";
-import { FaDownload } from "react-icons/fa";
+// import { FaDownload } from "react-icons/fa";
 
 const RealTime = () => {
   const [data, setData] = useState([]);
 
-  const initialBatteryInfo = { level: 0, charging: false, supported: true };
+  const initialBatteryInfo = { level: 0 };
 
   const [batteryInfo, setBatteryInfo] = useState(initialBatteryInfo);
   // Update the battery info
   const updateBatteryInfo = (battery) => {
     setBatteryInfo({
-      level: 0.1 * 100,
-      charging: battery.charging,
-      supported: true,
+      level: 0.8 * 100,
     });
   };
 
@@ -31,10 +29,6 @@ const RealTime = () => {
           const battery = await navigator.getBattery();
           updateBatteryInfo(battery);
 
-          // Setup the event listeners for the battery status changes
-          battery.addEventListener("chargingchange", () =>
-            updateBatteryInfo(battery)
-          );
           battery.addEventListener("levelchange", () =>
             updateBatteryInfo(battery)
           );
@@ -134,7 +128,6 @@ const RealTime = () => {
                 Ketinggian Air Laut
               </header>
               <div className="mx-4">
-                {" "}
                 <div className="flex justify-between items-center mt-4">
                   <div>
                     <p className="text-gray-600">⏰ 17 Juni 2024</p>
@@ -181,14 +174,18 @@ const RealTime = () => {
                   Suhu Laut
                 </header>
                 <div className="mx-4">
-                  {" "}
                   <div className="flex justify-between items-center mt-4">
                     <div>
                       <p className="text-gray-600">⏰ 17 Juni 2024</p>
                     </div>
-                    <a href="/">
-                      <FaDownload size={20} />
-                    </a>
+                    <select
+                      className="border border-collapse ml-2 px-2 rounded-lg p-0"
+                      id="waktu"
+                    >
+                      <option value="hariini">Hari ini</option>
+                      <option value="mingguini">Minggu ini</option>
+                      <option value="bulanini">Bulan ini</option>
+                    </select>
                   </div>
                   <Plot
                     className="flex w-full  h-[300px]"
@@ -246,15 +243,9 @@ const RealTime = () => {
                 <div class="warning-level">
                   <div className="flex items-center justify-center  mx-auto">
                     <div className="text-center">
-                      {batteryInfo.supported ? (
-                        <div className="flex flex-col items-center justify-center space-y-2">
-                          <BatteryInfo batteryInfo={batteryInfo} />
-                        </div>
-                      ) : (
-                        <div className="p-4 rounded-md bg-gray-200 text-gray-700">
-                          Battery status is not supported in this browser.
-                        </div>
-                      )}
+                      <div className="flex flex-col items-center justify-center space-y-2">
+                        <BatteryInfo batteryInfo={batteryInfo} />
+                      </div>
                     </div>
                   </div>
                 </div>
