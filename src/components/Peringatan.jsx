@@ -1,13 +1,12 @@
+//peringatan.jsx
+
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import { waves } from "../constants";
 
 const Peringatan = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,15 +17,14 @@ const Peringatan = () => {
     event.preventDefault();
 
     if (!validateEmail(email)) {
-      setMessage('');
-      setSuccessMessage('Email tidak valid. Silakan masukkan email yang benar.');
+      setMessage('Email tidak valid. Silakan coba lagi.');
       return;
     }
 
-    setLoading(true);
     const data = { email };
 
     try {
+      console.log('Sending data to server:', data);
       const response = await fetch('https://sealling.iot4environment.com/admin/send_notif.php', {
         method: 'POST',
         headers: {
@@ -38,50 +36,72 @@ const Peringatan = () => {
       const text = await response.text();
       console.log('Raw response:', text);
 
-      if (text === 'Gagal mendaftarkan email') {
-        setSuccessMessage('Gagal mendaftarkan email');
+      if (response.ok) {
+        setSuccessMessage('Pemberitahuan berhasil dikirim!');
         setMessage('');
       } else {
-        setMessage('Email berhasil terdaftar');
+        setMessage('Gagal mengirim pemberitahuan. Silakan coba lagi.');
         setSuccessMessage('');
       }
     } catch (error) {
       console.error('Error sending data:', error);
-      setMessage('Error sending data: ' + error.message);
-    } finally {
-      setLoading(false);
+      setMessage('Terjadi kesalahan. Silakan coba lagi.');
+      setSuccessMessage('');
     }
   };
 
   const triggerEmailNotifications = async (url) => {
     try {
-      const response = await fetch(url, {
-        method: 'POST',
-      });
+      console.log(`Triggering email notifications for ${url}`);
+      const response = await fetch(url, { method: 'POST' });
 
-      if (response.ok) {
-        console.log(`${url} notifications sent successfully.`);
+      if (!response.ok) {
+        console.error(`Request failed with status: ${response.status}`);
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        setMessage('Gagal mengirim pemberitahuan. Silakan coba lagi.');
+        setSuccessMessage('');
+        return;
+      }
+
+      const contentType = response.headers.get('Content-Type');
+      console.log('Content-Type:', contentType);
+
+      if (contentType && contentType.includes('application/json')) {
+        const responseData = await response.json();
+        console.log('JSON response:', responseData);
+        setMessage(responseData.message || 'Pemberitahuan berhasil dikirim!');
+        setSuccessMessage('Pemberitahuan berhasil dikirim!');
+      } else if (contentType && contentType.includes('text/html')) {
+        console.log('Received HTML response. Checking for potential issues...');
+        const text = await response.text();
+        console.log('HTML response:', text);
+        setMessage('Server mengembalikan halaman HTML, periksa API server.');
+        setSuccessMessage('');
       } else {
-        console.error(`Error sending ${url} notifications:`, await response.text());
+        const text = await response.text();
+        console.log('Text response:', text);
+        setMessage('Pemberitahuan berhasil dikirim!');
+        setSuccessMessage('Pemberitahuan berhasil dikirim!');
       }
     } catch (error) {
-      console.error(`Error triggering ${url} notifications:`, error);
+      console.error('Error triggering notifications:', error);
+      setMessage('Terjadi kesalahan. Silakan coba lagi.');
+      setSuccessMessage('');
     }
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      console.log('Triggering email notifications');
+    const intervalId = setInterval(() => {
       triggerEmailNotifications('https://sealling.iot4environment.com/api/send_notifications_ultrasonic');
-      triggerEmailNotifications('https://sealling.iot4environment.com/api/send_notifications_pressure');
-    }, 60000); // 1 menit
+      triggerEmailNotifications('https://sealling.iot4environment.com/api/send_notifications_submersible');
+    }, 60000); // Mengirimkan request setiap 60 detik
 
-    // Clean up interval on component unmount
-    return () => clearInterval(interval);
+    return () => clearInterval(intervalId); // Bersihkan interval saat komponen dibongkar
   }, []);
 
   const handleGoHome = () => {
-    navigate('/');
+    window.location.href = '/';
   };
 
   return (
@@ -102,9 +122,8 @@ const Peringatan = () => {
                 Daftarkan dirimu dan dapatkan fitur peringatan dini sekarang.
               </p>
             </h1>
-            {message && <p className="text-green-600 text-center mt-2">{message}</p>}
-            {successMessage && <p className="text-red-600 text-center mt-2">{successMessage}</p>}
-            {loading && <p className="text-blue-600 text-center mt-2">Loading...</p>}
+            {message && <p className="text-red-600 text-center mt-2">{message}</p>}
+            {successMessage && <p className="text-green-600 text-center mt-2">{successMessage}</p>}
             <form onSubmit={sendData}>
               <label className="block">
                 <span className="block text-sm font-normal pl-4 p-1 text-slate-900">
@@ -125,10 +144,16 @@ const Peringatan = () => {
                   *Pastikan email yang anda masukan sudah benar.
                 </p>
               </label>
-              <button type="submit" className="w-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:text-white bg-slate-900 text-white h-10 mt-5 rounded-full font-medium mx-auto">
+              <button
+                type="submit"
+                className="w-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:text-white bg-slate-900 text-white h-10 mt-5 rounded-full font-medium mx-auto"
+              >
                 Kirim
               </button>
-              <button onClick={handleGoHome} type="button" className="w-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:text-white bg-slate-900 text-white h-10 mt-5 rounded-full font-medium mx-auto">
+              <button
+                onClick={handleGoHome}
+                className="w-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:text-white bg-slate-900 text-white h-10 mt-5 rounded-full font-medium mx-auto"
+              >
                 Go to Home
               </button>
             </form>

@@ -576,7 +576,7 @@ useEffect(() => {
                 <div className="warning-details">
                   <div className="time-info flex justify-between mb-2">
                     <span>Sealling</span>
-                    <span>{currentTime.toLocaleTimeString}</span>
+                    <span>{currentTime.toLocaleTimeString()}</span>
                   </div>
                   <p className="mb-2">
                     Status Sensor Ultrasonic saat ini: {statusUltrasonic}
