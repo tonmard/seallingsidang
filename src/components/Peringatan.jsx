@@ -1,104 +1,146 @@
-//peringatan.jsx
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { waves } from "../constants";
 
 const Peringatan = () => {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [ultrasonicData, setUltrasonicData] = useState({ statusData: [], dateData: [] });
+  const [submersibleData, setSubmersibleData] = useState({ statusData: [], dateData: [] });
+  const [previousUltrasonicData, setPreviousUltrasonicData] = useState(null);
+  const [previousSubmersibleData, setPreviousSubmersibleData] = useState(null);
 
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-  };
+  const TELEGRAM_BOT_TOKEN = '7402465364:AAF1NBcho2tmZeqbn74X89YMJ71Tfd1fIHM';
+  const TELEGRAM_CHAT_ID = '-1002213571275';
 
-  const sendData = async (event) => {
-    event.preventDefault();
+  const fetchData = async (url, setData, dataKey) => {
+    try {
+      console.log(`Fetching data from ${url}`);
+      const response = await fetch(url);
+      if (response.ok) {
+        const contentType = response.headers.get('Content-Type');
+        if (contentType && contentType.includes('application/json')) {
+          const data = await response.json();
+          console.log(`Data fetched successfully from ${url}:`, data);
 
-    if (!validateEmail(email)) {
-      setMessage('Email tidak valid. Silakan coba lagi.');
-      return;
+          if (data && data[dataKey] && Array.isArray(data[dataKey]) && data[dataKey].length > 0) {
+            const firstElement = data[dataKey][0];
+            setData({
+              statusData: [firstElement.status],
+              dateData: [firstElement.date],
+            });
+          } else {
+            setData({ statusData: [], dateData: [] });
+            console.log(`No valid data found in ${url}`);
+          }
+        } else {
+          console.error('Unexpected content type:', contentType);
+        }
+      } else {
+        console.error(`Error fetching data: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.error('Error fetching data:', err);
     }
-
-    const data = { email };
+  };
+    
+  const fetchDataUltrasonic = useCallback(() => {
+    fetchData('https://sealling.iot4environment.com/admin/data_ultrasonic.php', setUltrasonicData, 'sensor_ultrasonic');
+  }, []);
+  
+  const fetchDataSubmersible = useCallback(() => {
+    fetchData('https://sealling.iot4environment.com/admin/data_submersible.php', setSubmersibleData, 'sensor_submersible');
+  }, []);
+  
+  const sendTelegramNotification = async (message) => {
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const payload = {
+      chat_id: TELEGRAM_CHAT_ID,
+      text: message,
+    };
 
     try {
-      console.log('Sending data to server:', data);
-      const response = await fetch('https://sealling.iot4environment.com/admin/send_notif.php', {
+      console.log(`Sending notification to Telegram: ${message}`);
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload),
       });
 
-      const text = await response.text();
-      console.log('Raw response:', text);
-
-      if (response.ok) {
-        setSuccessMessage('Pemberitahuan berhasil dikirim!');
-        setMessage('');
-      } else {
-        setMessage('Gagal mengirim pemberitahuan. Silakan coba lagi.');
-        setSuccessMessage('');
-      }
-    } catch (error) {
-      console.error('Error sending data:', error);
-      setMessage('Terjadi kesalahan. Silakan coba lagi.');
-      setSuccessMessage('');
-    }
-  };
-
-  const triggerEmailNotifications = async (url) => {
-    try {
-      console.log(`Triggering email notifications for ${url}`);
-      const response = await fetch(url, { method: 'POST' });
-
       if (!response.ok) {
-        console.error(`Request failed with status: ${response.status}`);
         const errorText = await response.text();
-        console.error('Error response:', errorText);
-        setMessage('Gagal mengirim pemberitahuan. Silakan coba lagi.');
-        setSuccessMessage('');
-        return;
-      }
-
-      const contentType = response.headers.get('Content-Type');
-      console.log('Content-Type:', contentType);
-
-      if (contentType && contentType.includes('application/json')) {
-        const responseData = await response.json();
-        console.log('JSON response:', responseData);
-        setMessage(responseData.message || 'Pemberitahuan berhasil dikirim!');
-        setSuccessMessage('Pemberitahuan berhasil dikirim!');
-      } else if (contentType && contentType.includes('text/html')) {
-        console.log('Received HTML response. Checking for potential issues...');
-        const text = await response.text();
-        console.log('HTML response:', text);
-        setMessage('Server mengembalikan halaman HTML, periksa API server.');
-        setSuccessMessage('');
+        console.error(`Failed to send Telegram message: ${errorText}`);
       } else {
-        const text = await response.text();
-        console.log('Text response:', text);
-        setMessage('Pemberitahuan berhasil dikirim!');
-        setSuccessMessage('Pemberitahuan berhasil dikirim!');
+        console.log('Notification sent successfully to Telegram');
       }
-    } catch (error) {
-      console.error('Error triggering notifications:', error);
-      setMessage('Terjadi kesalahan. Silakan coba lagi.');
-      setSuccessMessage('');
+    } catch (err) {
+      console.error('Error sending Telegram message:', err);
     }
   };
+
+  const sendNotifications = useCallback(async (sensorType, statusData, dateData) => {
+    const message = `${sensorType} Sensor Alert!\nStatus: ${statusData[0]}\nDate: ${dateData[0]}`;
+
+    try {
+      if (statusData[0] === 'Bahaya' || statusData[0] === 'Siaga') {
+        console.log(`Preparing to send notification for ${sensorType} sensor.`);
+        await sendTelegramNotification(message);
+      } else {
+        console.log(`No notification needed for ${sensorType} sensor. Status: ${statusData[0]}`);
+      }
+    } catch (err) {
+      console.error('Error sending notifications:', err);
+    }
+  }, []);
+
+  const checkForNewData = useCallback(() => {
+    console.log('Checking for new data...');
+
+    // Check if the fetched ultrasonic data is new
+    if (ultrasonicData.statusData.length > 0 && (
+        !previousUltrasonicData ||
+        previousUltrasonicData.statusData[0] !== ultrasonicData.statusData[0] ||
+        previousUltrasonicData.dateData[0] !== ultrasonicData.dateData[0]
+      )) {
+      console.log('New ultrasonic data detected:', ultrasonicData);
+      sendNotifications('Ultrasonic', ultrasonicData.statusData, ultrasonicData.dateData);
+      setPreviousUltrasonicData(ultrasonicData);  // Update the previous data
+    } else {
+      console.log('No new ultrasonic data detected.');
+    }
+
+    // Check if the fetched submersible data is new
+    if (submersibleData.statusData.length > 0 && (
+        !previousSubmersibleData ||
+        previousSubmersibleData.statusData[0] !== submersibleData.statusData[0] ||
+        previousSubmersibleData.dateData[0] !== submersibleData.dateData[0]
+      )) {
+      console.log('New submersible data detected:', submersibleData);
+      sendNotifications('Submersible', submersibleData.statusData, submersibleData.dateData);
+      setPreviousSubmersibleData(submersibleData);  // Update the previous data
+    } else {
+      console.log('No new submersible data detected.');
+    }
+  }, [ultrasonicData, submersibleData, previousUltrasonicData, previousSubmersibleData, sendNotifications]);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      triggerEmailNotifications('https://sealling.iot4environment.com/api/send_notifications_ultrasonic');
-      triggerEmailNotifications('https://sealling.iot4environment.com/api/send_notifications_submersible');
-    }, 60000); // Mengirimkan request setiap 60 detik
+    fetchDataUltrasonic();
+    fetchDataSubmersible();
 
-    return () => clearInterval(intervalId); // Bersihkan interval saat komponen dibongkar
-  }, []);
+    const intervalId = setInterval(() => {
+      fetchDataUltrasonic();
+      fetchDataSubmersible();
+    }, 60000); // Fetch data every minute
+
+    return () => clearInterval(intervalId); 
+  }, [fetchDataUltrasonic, fetchDataSubmersible]);
+
+  useEffect(() => {
+    checkForNewData();
+
+    const intervalId = setInterval(checkForNewData, 60000); // Check for new data every minute
+
+    return () => clearInterval(intervalId); 
+  }, [checkForNewData]);
 
   const handleGoHome = () => {
     window.location.href = '/';
@@ -122,41 +164,19 @@ const Peringatan = () => {
                 Daftarkan dirimu dan dapatkan fitur peringatan dini sekarang.
               </p>
             </h1>
-            {message && <p className="text-red-600 text-center mt-2">{message}</p>}
-            {successMessage && <p className="text-green-600 text-center mt-2">{successMessage}</p>}
-            <form onSubmit={sendData}>
-              <label className="block">
-                <span className="block text-sm font-normal pl-4 p-1 text-slate-900">
-                  Email:
-                </span>
-                <div className="relative flex items-center">
-                  <input
-                    name="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full text-sm text-black border border-black rounded-full p-2 pl-4 outline-none"
-                    placeholder="Masukan email anda"
-                  />
-                </div>
-                <p className="text-slate-600 text-xs pl-4 p-1">
-                  *Pastikan email yang anda masukan sudah benar.
-                </p>
-              </label>
-              <button
-                type="submit"
-                className="w-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:text-white bg-slate-900 text-white h-10 mt-5 rounded-full font-medium mx-auto"
-              >
-                Kirim
-              </button>
-              <button
-                onClick={handleGoHome}
-                className="w-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:text-white bg-slate-900 text-white h-10 mt-5 rounded-full font-medium mx-auto"
-              >
-                Go to Home
-              </button>
-            </form>
+            <button
+              type="button"
+              onClick={() => window.location.href = 'https://t.me/+jaoNjSIDGVgxYzZl'}
+              className="w-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:text-white bg-slate-900 text-white h-10 mt-5 rounded-full font-medium mx-auto"
+            >
+              Dapatkan Early Warning
+            </button>
+            <button
+              onClick={handleGoHome}
+              className="w-full transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:text-white bg-slate-900 text-white h-10 mt-5 rounded-full font-medium mx-auto"
+            >
+              Go to Home
+            </button>
           </div>
         </div>
       </div>

@@ -22,19 +22,17 @@ const RealTime = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime(new Date());
-    }, 1000); // Update every second
+    }, 1000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
-    // Set current date when component mounts
     setCurrentDate(new Date());
   }, []);
 
   const formatDate = (date) => {
-    // Format the date to "Tanggal Bulan Tahun"
+
     return date.toLocaleDateString('id-ID', {
       day: 'numeric',
       month: 'long',
@@ -71,7 +69,7 @@ const RealTime = () => {
 
       setData(extractedData);
       console.log(`Data yang diambil untuk ${dataKey}:`, extractedData);
-      setError(null); // Reset error jika fetch berhasil
+      setError(null);
     } catch (error) {
       console.error(`Kesalahan saat mengambil ${dataKey}:`, error);
       setError(`Kesalahan saat mengambil ${dataKey}: ${error.message}`);
@@ -95,24 +93,24 @@ const RealTime = () => {
     return () => {
       clearInterval(interval);
       if (debouncedFetchAllData.cancel) {
-        debouncedFetchAllData.cancel(); // Bersihkan debounce jika tersedia
+        debouncedFetchAllData.cancel();
       }
     };
   }, [fetchAllData]);
 
-  // Update battery info hook
+
   const updateBatteryInfo = useCallback((battery) => {
     console.log("Isi dataBattery:", dataBattery);
-    // Ambil level baterai dari API jika tersedia
+
     const batteryLevelFromAPI = dataBattery.length > 0 ? dataBattery[dataBattery.length - 1].persen : null;
     console.log("Battery level from API (if available):", batteryLevelFromAPI);
 
-    // Tentukan level baterai, konversi ke float jika perlu
-    const level = batteryLevelFromAPI !== null
-        ? parseFloat(batteryLevelFromAPI).toFixed(2)  // Konversi ke float dan format dengan dua desimal
-        : parseFloat(battery.level).toFixed(2);          // Gunakan level dari navigator dan format dengan dua desimal
 
-    // Log dimana level baterai berasal
+    const level = batteryLevelFromAPI !== null
+        ? parseFloat(batteryLevelFromAPI).toFixed(2) 
+        : parseFloat(battery.level).toFixed(2);         
+
+  
     if (batteryLevelFromAPI !== null) {
         console.log("Battery level from API:", level);
     } else {
@@ -127,17 +125,14 @@ const RealTime = () => {
         console.error("Error: Battery level cannot be greater than 100.");
         return;
     }
-
-    // Update state dengan informasi baterai
+   
     setBatteryInfo({
-        level: parsedLevel,  // Pastikan level baterai adalah float
+        level: parsedLevel,  
         charging: battery.charging,
         supported: true,
     });
 }, [dataBattery]);
 
-
-// Check battery API and setup
 const checkBatteryAPIAndSetup = useCallback(async () => {
   if (navigator.getBattery) {
     try {
@@ -169,86 +164,87 @@ useEffect(() => {
   };
 }, [checkBatteryAPIAndSetup, updateBatteryInfo]);
 
-  // Filter data function
-  const filterData = (data, range, month) => {
-    if (!data || data.length === 0) return [];
-    const now = new Date();
-    let startRange, endRange;
-    console.log("Filtering data for range:", range, "and month:", month);
-  
-    switch (range) {
-      case 'hariini':
-        startRange = new Date(now);
-        startRange.setHours(0, 0, 0, 0);
-        endRange = new Date(now);
-        endRange.setHours(23, 59, 59, 999);
-        break;
-      case 'mingguini':
-        startRange = new Date(now);
-        startRange.setDate(now.getDate() - now.getDay());
-        startRange.setHours(0, 0, 0, 0);
-        endRange = new Date(startRange);
-        endRange.setDate(startRange.getDate() + 6);
-        endRange.setHours(23, 59, 59, 999);
-        break;
-      case 'bulanini':
-        startRange = new Date(now.getFullYear(), now.getMonth(), 1);
-        endRange = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-        endRange.setHours(23, 59, 59, 999);
-        break;
-      case 'bulan':
-        startRange = new Date(now.getFullYear(), month, 1);
-        endRange = new Date(now.getFullYear(), month + 1, 0);
-        endRange.setHours(23, 59, 59, 999);
-        break;
-      default:
-        console.warn(`Range "${range}" is not valid.`);
-        return [];
-    }
-  
-    console.log("Start Range:", startRange);
-    console.log("End Range:", endRange);
-  
-    return data.filter(item => {
-      const timestamp = item.date;
-  
-      if (timestamp === undefined || timestamp === null || timestamp === '') {
-        console.warn(`Missing or empty timestamp: ${timestamp}`);
-        return false;
-      }
-  
-      const date = new Date(timestamp);
-      const isValidDate = !isNaN(date.getTime()); // Check if date is valid
+
+const filterData = (data, range, month) => {
+  if (!data || data.length === 0) return [];
+  const now = new Date();
+  let startRange, endRange;
+  console.log("Filtering data for range:", range, "and month:", month);
+
+  switch (range) {
+    case 'hariini':
+      startRange = new Date(now);
+      startRange.setHours(0, 0, 0, 0);
+      endRange = new Date(now);
+      endRange.setHours(23, 59, 59, 999);
+      break;
+    case 'mingguini':
+      const startOfWeek = new Date(now);
+      startOfWeek.setDate(now.getDate() - (now.getDay() === 0 ? 6 : now.getDay() - 1)); // Set to Monday
+      startOfWeek.setHours(0, 0, 0, 0);
+
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
+      endOfWeek.setHours(23, 59, 59, 999);
       
-      console.log("Item Date:", isValidDate ? date : "Invalid Date", "Is in range:", isValidDate && date >= startRange && date <= endRange);
-      return isValidDate && date >= startRange && date <= endRange;
-    });
-  };
-  
-  
-  // Data extraction
-  const getDataFields = useCallback((data, field) => {
-    if (!Array.isArray(data)) return [];
-    return data.map(item => item[field] || null); // Ensure a default value if field is missing
-  }, []);
-  
-  // Handlers for UI interactions
-  const handleTimeRangeChange = useCallback((event) => {
-    const newValue = event.target.value;
-    setTimeRange(newValue);
-    console.log("Time range changed to:", newValue);
-    if (newValue !== 'bulan') {
-      setSelectedMonth(new Date().getMonth());
+      startRange = startOfWeek;
+      endRange = endOfWeek;
+      break;
+    case 'bulanini':
+      startRange = new Date(now.getFullYear(), now.getMonth(), 1);
+      endRange = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+      endRange.setHours(23, 59, 59, 999);
+      break;
+    case 'bulan':
+      startRange = new Date(now.getFullYear(), month, 1);
+      endRange = new Date(now.getFullYear(), month + 1, 0);
+      endRange.setHours(23, 59, 59, 999);
+      break;
+    default:
+      console.warn(`Range "${range}" is not valid.`);
+      return [];
+  }
+
+  console.log("Start Range:", startRange);
+  console.log("End Range:", endRange);
+
+  return data.filter(item => {
+    const timestamp = item.date;
+
+    if (!timestamp) {
+      console.warn(`Missing or empty timestamp: ${timestamp}`);
+      return false;
     }
-  }, []);
+
+    const date = new Date(timestamp);
+    const isValidDate = !isNaN(date.getTime()); 
+    
+    console.log("Item Date:", isValidDate ? date : "Invalid Date", "Is in range:", isValidDate && date >= startRange && date <= endRange);
+    return isValidDate && date >= startRange && date <= endRange;
+  });
+}; 
   
-  const handleMonthChange = useCallback((event) => {
-    const newMonth = parseInt(event.target.value, 10);
-    setSelectedMonth(newMonth);
-    console.log("Month changed to:", newMonth);
-  }, []);
+const getDataFields = useCallback((data, field) => {
+  if (!Array.isArray(data)) return [];
+  return data.map(item => item[field] !== undefined ? item[field] : null);
+}, []);
+
+const handleTimeRangeChange = useCallback((event) => {
+  const newValue = event.target.value;
+  setTimeRange(newValue);
+  console.log("Time range changed to:", newValue);
+  if (newValue !== 'bulan') {
+    setSelectedMonth(new Date().getMonth());
+  }
+}, []);
+
+const handleMonthChange = useCallback((event) => {
+  const newMonth = parseInt(event.target.value, 10);
+  setSelectedMonth(newMonth);
+  console.log("Month changed to:", newMonth);
+}, []);
   
-  // UseEffect to log sensor data arrays
+ 
   useEffect(() => {
     const logSensorDataArrays = () => {
       console.log('logSensorDataArrays dipanggil');
@@ -277,69 +273,115 @@ useEffect(() => {
   }, [sensorDataUltrasonic, sensorDataSubmersible, sensorDataSuhu, dataBattery]);
   
   // Filtered data
-  const filteredUltrasonicData = useMemo(() => filterData(sensorDataUltrasonic, timeRange, selectedMonth), [sensorDataUltrasonic, timeRange, selectedMonth]);
-  const filteredSubmersibleData = useMemo(() => filterData(sensorDataSubmersible, timeRange, selectedMonth), [sensorDataSubmersible, timeRange, selectedMonth]);
-  const filteredSuhuData = useMemo(() => filterData(sensorDataSuhu, timeRange, selectedMonth), [sensorDataSuhu, timeRange, selectedMonth]);
+  const filteredUltrasonicData = useMemo(() => {
+    const data = filterData(sensorDataUltrasonic, timeRange, selectedMonth);
+    console.log("Filtered Ultrasonic Data:", data);
+    return data;
+  }, [sensorDataUltrasonic, timeRange, selectedMonth]);
   
-  // Extract data fields
-  const xDataUltrasonic = useMemo(
-    () => getDataFields(filteredUltrasonicData, 'date'),
-    [filteredUltrasonicData, getDataFields]
-  );
-  console.log('xDataUltrasonic:', xDataUltrasonic);
+const filteredSubmersibleData = useMemo(() => {
+    const data = filterData(sensorDataSubmersible, timeRange, selectedMonth);
+    console.log("Filtered Submersible Data:", data);
+    return data;
+  }, [sensorDataSubmersible, timeRange, selectedMonth]);
   
-  const yDataUltrasonic = useMemo(
-    () => getDataFields(filteredUltrasonicData, 'ket_ultrasonic'),
-    [filteredUltrasonicData, getDataFields]
-  );
-  console.log('yDataUltrasonic:', yDataUltrasonic);
+const filteredSuhuData = useMemo(() => filterData(sensorDataSuhu, timeRange, selectedMonth), [sensorDataSuhu, timeRange, selectedMonth]);
+  
+const filterDataByTime = (ultrasonicData, submersibleData) => {
+    let filteredData = [];
+
+    const addData = (data, sensorType) => {
+        data.forEach(item => {
+            const date = new Date(item.date);
+            const hour = date.getHours();
+            const minutes = date.getMinutes();
+            const time = hour + minutes / 60; // Convert time to decimal for easier comparison
+
+            if (sensorType === 'ultrasonic' && time >= 9.5 && time < 18) {
+                filteredData.push({
+                    date: item.date,
+                    value: item.ket_ultrasonic,
+                });
+            } else if (sensorType === 'submersible' && (time >= 18 || time < 9.5)) {
+                filteredData.push({
+                    date: item.date,
+                    value: item.kedalaman,
+                });
+            }
+        });
+    };
+
+    // Handle the morning submersible data (00:00 - 09:30)
+    const subDataMorning = submersibleData.filter(item => {
+        const date = new Date(item.date);
+        const time = date.getHours() + date.getMinutes() / 60;
+        return time >= 0 && time < 9.5;
+    });
+    addData(subDataMorning, 'submersible');
+
+    // Connect morning submersible data directly to ultrasonic data (09:30 - 18:00)
+    addData(ultrasonicData, 'ultrasonic');
+
+    // Add a null separator to prevent unwanted connections
+    filteredData.push({ date: null, value: null });
+
+    // Handle the evening submersible data (18:00 - 24:00)
+    const subDataEvening = submersibleData.filter(item => {
+        const date = new Date(item.date);
+        const time = date.getHours() + date.getMinutes() / 60;
+        return time >= 18;
+    });
+    addData(subDataEvening, 'submersible');
+
+    return filteredData;
+};
+
+const combinedData = useMemo(() => {
+  return filterDataByTime(filteredUltrasonicData, filteredSubmersibleData);
+}, [filteredUltrasonicData, filteredSubmersibleData]);
+
+  
+const xDataCombined = useMemo(
+    () => getDataFields(combinedData, 'date'),
+    [combinedData, getDataFields]
+);
+
+const yDataCombined = useMemo(
+    () => getDataFields(combinedData, 'value'),
+    [combinedData, getDataFields]
+);
 
   const waktuUltrasonic = useMemo(() => {
     const dates = getDataFields(filteredUltrasonicData, 'date');
-    if (dates.length === 0) return null; // Handle empty data
+    if (dates.length === 0) return null; 
   
-    // Mengambil date dari elemen terakhir
     return dates[0];
   }, [filteredUltrasonicData, getDataFields]);
   
   console.log('waktuUltrasonic:', waktuUltrasonic);
 
   const statusUltrasonic = useMemo(() => {
-    if (filteredUltrasonicData.length === 0) return null; // Handle empty data
+    if (filteredUltrasonicData.length === 0) return null; 
   
-    // Mengambil status dari elemen terakhir
     const lastItem = filteredUltrasonicData[0];
     return lastItem.status;
   }, [filteredUltrasonicData]);
   
   console.log('statusUltrasonic:', statusUltrasonic);
-  
-  const xDataSubmersible = useMemo(
-    () => getDataFields(filteredSubmersibleData, 'date'),
-    [filteredSubmersibleData, getDataFields]
-  );
-  console.log('xDataSubmersible:', xDataSubmersible);
-  
-  const yDataSubmersible = useMemo(
-    () => getDataFields(filteredSubmersibleData, 'kedalaman'),
-    [filteredSubmersibleData, getDataFields]
-  );
-  console.log('yDataSubmersible:', yDataSubmersible);
 
   const waktuSubmersible = useMemo(() => {
     const dates = getDataFields(filteredSubmersibleData, 'date');
-    if (dates.length === 0) return null; // Handle empty data
+    if (dates.length === 0) return null; 
   
-    // Mengambil date dari elemen terakhir
+   
     return dates[0];
   }, [filteredSubmersibleData, getDataFields]);
   
   console.log('waktuSubmersible:', waktuSubmersible);
 
   const statusSubmersible = useMemo(() => {
-    if (filteredSubmersibleData.length === 0) return null; // Handle empty data
+    if (filteredSubmersibleData.length === 0) return null;
   
-    // Mengambil status dari elemen terakhir
     const lastItem = filteredSubmersibleData[0];
     return lastItem.status;
   }, [filteredSubmersibleData]);
@@ -362,18 +404,18 @@ useEffect(() => {
   color: ${props => {
     switch (props.status) {
       case 'Normal':
-        return 'green'; // Warna hijau
+        return 'green'; 
       case 'Siaga':
-        return '#FFD700'; // Warna kuning
+        return '#FFD700'; 
       case 'Bahaya':
-        return 'red'; // Warna merah
+        return 'red'; 
       default:
-        return 'black'; // Warna default jika status tidak dikenali
+        return 'black';
       }
     }};
     font-weight: bold;
-    font-size: 7xl; // Sesuaikan dengan ukuran font yang diinginkan
-    margin-right: 1rem; // Sesuaikan jarak margin jika diperlukan
+    font-size: 7xl;
+    margin-right: 1rem;
   `;
 
   if (error) {
@@ -504,25 +546,17 @@ useEffect(() => {
                   className="flex w-full h-[300px]"
                   data={[
                     {
-                      x: xDataUltrasonic,
-                      y: yDataUltrasonic,
+                      x: xDataCombined,
+                      y: yDataCombined,
                       type: "scatter",
                       mode: "lines+markers",
                       marker: { color: "red" },
-                      name: "Sensor Ultrasonic",
-                    },
-                    {
-                      x: xDataSubmersible,
-                      y: yDataSubmersible,
-                      type: "scatter",
-                      mode: "lines+markers",
-                      marker: { color: "green" },
-                      name: "Sensor Submersible",
+                      name: "Combined Sensor Data",
                     },
                   ]}
                   layout={{
                     xaxis: { title: "Time(h)" },
-                    yaxis: { title: "Water level(m)" },
+                    yaxis: { title: "Water level(cm)" },
                   }}
                 />
               </div>
@@ -630,7 +664,7 @@ useEffect(() => {
                     height="250"
                     style={{
                       color: "red",
-                      fontSize: "16px", // Pastikan nilai properti style adalah objek
+                      fontSize: "16px",
                     }}
                     allowfullscreen=""
                     loading="lazy"
