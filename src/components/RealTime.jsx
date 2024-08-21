@@ -10,6 +10,12 @@ const RealTime = () => {
   const [sensorDataSubmersible, setSensorDataSubmersible] = useState([]);
   const [sensorDataSuhu, setSensorDataSuhu] = useState([]);
   const [dataBattery, setDataBattery] = useState([]);
+  const [kenaikanHarian, setKenaikanHarian] = useState(null);
+  const [kenaikanMingguan, setKenaikanMingguan] = useState(null);
+  const [kenaikanBulanan, setKenaikanBulanan] = useState(null);
+  const [kenaikanHarianSub, setKenaikanHarianSub] = useState(null);
+  const [kenaikanMingguanSub, setKenaikanMingguanSub] = useState(null);
+  const [kenaikanBulananSub, setKenaikanBulananSub] = useState(null);
   const [error, setError] = useState(null);
   const initialBatteryInfo = { level: null, charging: null, supported: false };
   const [batteryInfo, setBatteryInfo] = useState(initialBatteryInfo);
@@ -76,20 +82,49 @@ const RealTime = () => {
     }
   };
 
+  const fetchKenaikanData = async (url, setDaily, setWeekly, setMonthly, setError) => {
+    try {
+      console.log(`Mengambil data dari: ${url}`);
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Kesalahan HTTP! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(`Data respons lengkap untuk kenaikan:`, data);
+  
+      const dailyIncrease = data.daily_increase;
+      const weeklyIncrease = data.weekly_increase;
+      const monthlyIncrease = data.monthly_increase;
+  
+      setDaily(dailyIncrease || 0); // Set default value to 0 if null or undefined
+      setWeekly(weeklyIncrease || 0);
+      setMonthly(monthlyIncrease || 0);
+  
+      setError(null);
+    } catch (error) {
+      console.error(`Kesalahan saat mengambil data kenaikan:`, error);
+      setError(`Kesalahan saat mengambil data kenaikan: ${error.message}`);
+    }
+  };
+  
+
   const fetchAllData = useCallback(() => {
     setLoading(true);
     Promise.all([
       fetchData("https://sealling.iot4environment.com/admin/data_ultrasonic.php", setSensorDataUltrasonic, "sensor_ultrasonic", setError),
       fetchData("https://sealling.iot4environment.com/admin/data_submersible.php", setSensorDataSubmersible, "sensor_submersible", setError),
       fetchData("https://sealling.iot4environment.com/admin/data_suhu.php", setSensorDataSuhu, "sensor_suhu", setError),
-      fetchData("https://sealling.iot4environment.com/admin/data_baterai.php", setDataBattery, "sisa_baterai", setError)
+      fetchData("https://sealling.iot4environment.com/admin/data_baterai.php", setDataBattery, "sisa_baterai", setError),
+      fetchKenaikanData("https://sealling.iot4environment.com/admin/data_kenaikan.php", setKenaikanHarian, setKenaikanMingguan, setKenaikanBulanan, setError),
+      fetchKenaikanData("https://sealling.iot4environment.com/admin/data_kenaikansub.php", setKenaikanHarianSub, setKenaikanMingguanSub, setKenaikanBulananSub, setError),
     ]).finally(() => setLoading(false));
   }, [setError, setSensorDataUltrasonic, setSensorDataSubmersible, setSensorDataSuhu, setDataBattery]);
+  
 
   useEffect(() => {
     const debouncedFetchAllData = debounce(fetchAllData, 300);
     debouncedFetchAllData();
-    const interval = setInterval(debouncedFetchAllData, 60000); // 1 menit
+    const interval = setInterval(debouncedFetchAllData, 900000); // 15 menit
     return () => {
       clearInterval(interval);
       if (debouncedFetchAllData.cancel) {
@@ -243,7 +278,6 @@ const handleMonthChange = useCallback((event) => {
   setSelectedMonth(newMonth);
   console.log("Month changed to:", newMonth);
 }, []);
-  
  
   useEffect(() => {
     const logSensorDataArrays = () => {
@@ -264,7 +298,7 @@ const handleMonthChange = useCallback((event) => {
     const interval = setInterval(() => {
       console.log('Interval callback invoked');
       logSensorDataArrays();
-    }, 60000); // 1 minute
+    }, 600000); // 1 minute
   
     return () => {
       console.log('Clearing interval');
@@ -286,61 +320,78 @@ const filteredSubmersibleData = useMemo(() => {
   }, [sensorDataSubmersible, timeRange, selectedMonth]);
   
 const filteredSuhuData = useMemo(() => filterData(sensorDataSuhu, timeRange, selectedMonth), [sensorDataSuhu, timeRange, selectedMonth]);
-  
+
 const filterDataByTime = (ultrasonicData, submersibleData) => {
-    let filteredData = [];
+  let filteredData = [];
+  
+  const addDataWithBreak = (data, sensorType) => {
+    let lastDate = null;
 
-    const addData = (data, sensorType) => {
-        data.forEach(item => {
-            const date = new Date(item.date);
-            const hour = date.getHours();
-            const minutes = date.getMinutes();
-            const time = hour + minutes / 60; // Convert time to decimal for easier comparison
+    data.forEach(item => {
+      const date = new Date(item.date);
+      const time = date.getHours() + date.getMinutes() / 60;
+      const currentDateStr = date.toDateString();
 
-            if (sensorType === 'ultrasonic' && time >= 9.5 && time < 18) {
-                filteredData.push({
-                    date: item.date,
-                    value: item.ket_ultrasonic,
-                });
-            } else if (sensorType === 'submersible' && (time >= 18 || time < 9.5)) {
-                filteredData.push({
-                    date: item.date,
-                    value: item.kedalaman,
-                });
-            }
+      if (lastDate && lastDate !== currentDateStr) {
+        // Add a break between different days
+        filteredData.push({ date: null, value: null });
+      }
+
+      if (
+        (sensorType === 'ultrasonic' && time >= 9.5 && time < 18) ||
+        (sensorType === 'submersible' && ((time >= 0 && time < 9.5) || time >= 18))
+      ) {
+        filteredData.push({
+          date: item.date,
+          value: sensorType === 'ultrasonic' ? item.ket_ultrasonic : item.kedalaman,
         });
-    };
+      }
 
-    // Handle the morning submersible data (00:00 - 09:30)
-    const subDataMorning = submersibleData.filter(item => {
-        const date = new Date(item.date);
-        const time = date.getHours() + date.getMinutes() / 60;
-        return time >= 0 && time < 9.5;
+      lastDate = currentDateStr;
     });
-    addData(subDataMorning, 'submersible');
+  };
 
-    // Connect morning submersible data directly to ultrasonic data (09:30 - 18:00)
-    addData(ultrasonicData, 'ultrasonic');
+  const addBreakBetweenPeriods = () => {
+    if (filteredData.length > 0) {
+      filteredData.push({ date: null, value: null });
+    }
+  };
 
-    // Add a null separator to prevent unwanted connections
-    filteredData.push({ date: null, value: null });
+  // Morning Submersible Data (00:00 - 09:30)
+  const subDataMorning = submersibleData.filter(item => {
+    const date = new Date(item.date);
+    const time = date.getHours() + date.getMinutes() / 60;
+    return time >= 0 && time < 9.5;
+  });
+  addDataWithBreak(subDataMorning, 'submersible');
 
-    // Handle the evening submersible data (18:00 - 24:00)
-    const subDataEvening = submersibleData.filter(item => {
-        const date = new Date(item.date);
-        const time = date.getHours() + date.getMinutes() / 60;
-        return time >= 18;
-    });
-    addData(subDataEvening, 'submersible');
+  addBreakBetweenPeriods(); // Add break between morning submersible and ultrasonic data
 
-    return filteredData;
+  // Ultrasonic Data (09:30 - 18:00)
+  const ultrasonicDataFiltered = ultrasonicData.filter(item => {
+    const date = new Date(item.date);
+    const time = date.getHours() + date.getMinutes() / 60;
+    return time >= 9.5 && time < 18;
+  });
+  addDataWithBreak(ultrasonicDataFiltered, 'ultrasonic');
+
+  addBreakBetweenPeriods(); // Add break between ultrasonic and evening submersible data
+
+  // Evening Submersible Data (18:00 - 24:00)
+  const subDataEvening = submersibleData.filter(item => {
+    const date = new Date(item.date);
+    const time = date.getHours() + date.getMinutes() / 60;
+    return time >= 18;
+  });
+  addDataWithBreak(subDataEvening, 'submersible');
+
+  return filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
 };
 
 const combinedData = useMemo(() => {
   return filterDataByTime(filteredUltrasonicData, filteredSubmersibleData);
 }, [filteredUltrasonicData, filteredSubmersibleData]);
 
-  
 const xDataCombined = useMemo(
     () => getDataFields(combinedData, 'date'),
     [combinedData, getDataFields]
@@ -444,7 +495,7 @@ const yDataCombined = useMemo(
           Universitas Telkom - Bandung
         </h1>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
-          <CardData title="Hari ini" total="20 cm" rate="0.43%" levelUp>
+        <CardData title="Hari ini" ultrasonic={kenaikanHarian} submersible={kenaikanHarianSub} levelUp>
             <svg
               className="fill-primary dark:fill-white"
               width="22"
@@ -463,7 +514,7 @@ const yDataCombined = useMemo(
               />
             </svg>
           </CardData>
-          <CardData title="7 Hari Terakhir" total="20 cm" rate="4.35%" levelUp>
+          <CardData title="7 Hari Terakhir" ultrasonic={kenaikanMingguan} submersible={kenaikanMingguanSub} levelUp>
             <svg
               className="fill-primary dark:fill-white"
               width="20"
@@ -486,7 +537,7 @@ const yDataCombined = useMemo(
               />
             </svg>
           </CardData>
-          <CardData title="30 Hari Terakhir" total="20 cm" rate="2.59%" levelUp>
+          <CardData title="30 Hari Terakhir" ultrasonic={kenaikanBulanan} submersible={kenaikanBulananSub} levelUp>
             <svg
               className="fill-primary dark:fill-white"
               width="22"
@@ -558,6 +609,7 @@ const yDataCombined = useMemo(
                     xaxis: { title: "Time(h)" },
                     yaxis: { title: "Water level(cm)" },
                   }}
+                  useResizeHandler={false}
                 />
               </div>
             </div>
@@ -589,6 +641,7 @@ const yDataCombined = useMemo(
                       xaxis: { title: "Time(h)" },
                       yaxis: { title: "Temperature(°C)" },
                     }}
+                    useResizeHandler={false}
                   />
                 </div>
               </div>

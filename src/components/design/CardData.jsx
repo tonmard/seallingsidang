@@ -1,21 +1,33 @@
 import React from "react";
 
-const CardData = ({ title, total, rate, levelUp, levelDown }) => {
+const CardData = ({ title, ultrasonic, submersible, rate, levelUp, levelDown }) => {
   return (
-    <div className="rounded-lg  border-l-[15px] border-slate-900 w-auto border-stroke p-6 shadow-lg ">
-      <div className=" flex w-full justify-between">
-        <div>
-          <h4 className="text-title-md font-bold text-slate-900">{total}</h4>
-          <span className="text-sm font-medium">{title}</span>
-        </div>
+    <div className="rounded-lg border-l-[15px] border-slate-900 w-auto border-stroke p-6 shadow-lg">
+      {/* Title Section */}
+      <div className="flex flex-col mb-4">
+        <span className="text-sm font-medium">{title}</span>
+      </div>
 
+      {/* Ultrasonic and Submersible Section */}
+      <div className="mb-4">
+        <div className="flex justify-between">
+          <span className="text-sm font-medium">Ultrasonic:</span>
+          <span className="text-sm font-medium">{ultrasonic}</span>
+        </div>
+        <div className="flex justify-between mt-1">
+          <span className="text-sm font-medium">Submersible:</span>
+          <span className="text-sm font-medium">{submersible}</span>
+        </div>
+      </div>
+
+      {/* Rate Section with Level Indicators */}
+      <div className="flex justify-between items-center">
         <span
           className={`flex items-center gap-1 text-sm font-medium ${
-            levelUp && "text-meta-3"
-          } ${levelDown && "text-meta-5"} `}
+            levelUp ? "text-meta-3" : levelDown ? "text-meta-5" : ""
+          }`}
         >
           {rate}
-
           {levelUp && (
             <svg
               className="fill-meta-3"
