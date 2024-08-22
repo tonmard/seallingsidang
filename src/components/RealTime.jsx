@@ -3,7 +3,7 @@ import Plot from "react-plotly.js";
 import CardData from "./design/CardData";
 import BatteryInfo from "./BatteryInfo";
 import debounce from "lodash.debounce";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const RealTime = () => {
   const [sensorDataUltrasonic, setSensorDataUltrasonic] = useState([]);
@@ -38,11 +38,10 @@ const RealTime = () => {
   }, []);
 
   const formatDate = (date) => {
-
-    return date.toLocaleDateString('id-ID', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+    return date.toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
   };
 
@@ -59,18 +58,28 @@ const RealTime = () => {
       let extractedData = data[dataKey];
       console.log(`Data yang diambil untuk ${dataKey} adalah `, extractedData);
 
-      if (extractedData && typeof extractedData === 'object' && !Array.isArray(extractedData)) {
-        console.warn(`Data untuk ${dataKey} adalah objek, mengubahnya menjadi array.`);
+      if (
+        extractedData &&
+        typeof extractedData === "object" &&
+        !Array.isArray(extractedData)
+      ) {
+        console.warn(
+          `Data untuk ${dataKey} adalah objek, mengubahnya menjadi array.`
+        );
         extractedData = [extractedData];
       }
 
       if (!Array.isArray(extractedData)) {
-        console.warn(`Diharapkan sebuah array tapi mendapatkan ${typeof extractedData} untuk ${dataKey}`);
+        console.warn(
+          `Diharapkan sebuah array tapi mendapatkan ${typeof extractedData} untuk ${dataKey}`
+        );
         extractedData = [];
       }
 
       if (extractedData.length === 0) {
-        console.warn(`Tidak ada data ditemukan untuk ${dataKey}, menggunakan array kosong sebagai fallback.`);
+        console.warn(
+          `Tidak ada data ditemukan untuk ${dataKey}, menggunakan array kosong sebagai fallback.`
+        );
       }
 
       setData(extractedData);
@@ -82,7 +91,13 @@ const RealTime = () => {
     }
   };
 
-  const fetchKenaikanData = async (url, setDaily, setWeekly, setMonthly, setError) => {
+  const fetchKenaikanData = async (
+    url,
+    setDaily,
+    setWeekly,
+    setMonthly,
+    setError
+  ) => {
     try {
       console.log(`Mengambil data dari: ${url}`);
       const response = await fetch(url);
@@ -91,35 +106,71 @@ const RealTime = () => {
       }
       const data = await response.json();
       console.log(`Data respons lengkap untuk kenaikan:`, data);
-  
+
       const dailyIncrease = data.daily_increase;
       const weeklyIncrease = data.weekly_increase;
       const monthlyIncrease = data.monthly_increase;
-  
+
       setDaily(dailyIncrease || 0); // Set default value to 0 if null or undefined
       setWeekly(weeklyIncrease || 0);
       setMonthly(monthlyIncrease || 0);
-  
+
       setError(null);
     } catch (error) {
       console.error(`Kesalahan saat mengambil data kenaikan:`, error);
       setError(`Kesalahan saat mengambil data kenaikan: ${error.message}`);
     }
   };
-  
 
   const fetchAllData = useCallback(() => {
     setLoading(true);
     Promise.all([
-      fetchData("https://sealling.iot4environment.com/admin/data_ultrasonic.php", setSensorDataUltrasonic, "sensor_ultrasonic", setError),
-      fetchData("https://sealling.iot4environment.com/admin/data_submersible.php", setSensorDataSubmersible, "sensor_submersible", setError),
-      fetchData("https://sealling.iot4environment.com/admin/data_suhu.php", setSensorDataSuhu, "sensor_suhu", setError),
-      fetchData("https://sealling.iot4environment.com/admin/data_baterai.php", setDataBattery, "sisa_baterai", setError),
-      fetchKenaikanData("https://sealling.iot4environment.com/admin/data_kenaikan.php", setKenaikanHarian, setKenaikanMingguan, setKenaikanBulanan, setError),
-      fetchKenaikanData("https://sealling.iot4environment.com/admin/data_kenaikansub.php", setKenaikanHarianSub, setKenaikanMingguanSub, setKenaikanBulananSub, setError),
+      fetchData(
+        "https://sealling.iot4environment.com/admin/data_ultrasonic.php",
+        setSensorDataUltrasonic,
+        "sensor_ultrasonic",
+        setError
+      ),
+      fetchData(
+        "https://sealling.iot4environment.com/admin/data_submersible.php",
+        setSensorDataSubmersible,
+        "sensor_submersible",
+        setError
+      ),
+      fetchData(
+        "https://sealling.iot4environment.com/admin/data_suhu.php",
+        setSensorDataSuhu,
+        "sensor_suhu",
+        setError
+      ),
+      fetchData(
+        "https://sealling.iot4environment.com/admin/data_baterai.php",
+        setDataBattery,
+        "sisa_baterai",
+        setError
+      ),
+      fetchKenaikanData(
+        "https://sealling.iot4environment.com/admin/data_kenaikan.php",
+        setKenaikanHarian,
+        setKenaikanMingguan,
+        setKenaikanBulanan,
+        setError
+      ),
+      fetchKenaikanData(
+        "https://sealling.iot4environment.com/admin/data_kenaikansub.php",
+        setKenaikanHarianSub,
+        setKenaikanMingguanSub,
+        setKenaikanBulananSub,
+        setError
+      ),
     ]).finally(() => setLoading(false));
-  }, [setError, setSensorDataUltrasonic, setSensorDataSubmersible, setSensorDataSuhu, setDataBattery]);
-  
+  }, [
+    setError,
+    setSensorDataUltrasonic,
+    setSensorDataSubmersible,
+    setSensorDataSuhu,
+    setDataBattery,
+  ]);
 
   useEffect(() => {
     const debouncedFetchAllData = debounce(fetchAllData, 300);
@@ -133,335 +184,373 @@ const RealTime = () => {
     };
   }, [fetchAllData]);
 
+  const updateBatteryInfo = useCallback(
+    (battery) => {
+      console.log("Isi dataBattery:", dataBattery);
 
-  const updateBatteryInfo = useCallback((battery) => {
-    console.log("Isi dataBattery:", dataBattery);
+      const batteryLevelFromAPI =
+        dataBattery.length > 0
+          ? dataBattery[dataBattery.length - 1].persen
+          : null;
+      console.log(
+        "Battery level from API (if available):",
+        batteryLevelFromAPI
+      );
 
-    const batteryLevelFromAPI = dataBattery.length > 0 ? dataBattery[dataBattery.length - 1].persen : null;
-    console.log("Battery level from API (if available):", batteryLevelFromAPI);
+      const level =
+        batteryLevelFromAPI !== null
+          ? parseFloat(batteryLevelFromAPI).toFixed(2)
+          : parseFloat(battery.level).toFixed(2);
 
-
-    const level = batteryLevelFromAPI !== null
-        ? parseFloat(batteryLevelFromAPI).toFixed(2) 
-        : parseFloat(battery.level).toFixed(2);         
-
-  
-    if (batteryLevelFromAPI !== null) {
+      if (batteryLevelFromAPI !== null) {
         console.log("Battery level from API:", level);
-    } else {
+      } else {
         console.log("Battery level from navigator:", level);
-    }
+      }
 
-    const parsedLevel = parseFloat(level);
-    if (parsedLevel < 0) {
+      const parsedLevel = parseFloat(level);
+      if (parsedLevel < 0) {
         console.error("Error: Battery level cannot be negative.");
         return;
-    } else if (parsedLevel > 100) {
+      } else if (parsedLevel > 100) {
         console.error("Error: Battery level cannot be greater than 100.");
         return;
-    }
-   
-    setBatteryInfo({
-        level: parsedLevel,  
+      }
+
+      setBatteryInfo({
+        level: parsedLevel,
         charging: battery.charging,
         supported: true,
-    });
-}, [dataBattery]);
+      });
+    },
+    [dataBattery]
+  );
 
-const checkBatteryAPIAndSetup = useCallback(async () => {
-  if (navigator.getBattery) {
-    try {
-      const battery = await navigator.getBattery();
-      updateBatteryInfo(battery);
-      battery.addEventListener("chargingchange", () => updateBatteryInfo(battery));
-      battery.addEventListener("levelchange", () => updateBatteryInfo(battery));
-    } catch (error) {
+  const checkBatteryAPIAndSetup = useCallback(async () => {
+    if (navigator.getBattery) {
+      try {
+        const battery = await navigator.getBattery();
+        updateBatteryInfo(battery);
+        battery.addEventListener("chargingchange", () =>
+          updateBatteryInfo(battery)
+        );
+        battery.addEventListener("levelchange", () =>
+          updateBatteryInfo(battery)
+        );
+      } catch (error) {
+        console.error("Battery status is not supported.");
+        setBatteryInfo((prev) => ({ ...prev, supported: false }));
+      }
+    } else {
       console.error("Battery status is not supported.");
       setBatteryInfo((prev) => ({ ...prev, supported: false }));
     }
-  } else {
-    console.error("Battery status is not supported.");
-    setBatteryInfo((prev) => ({ ...prev, supported: false }));
-  }
-}, [updateBatteryInfo]);
+  }, [updateBatteryInfo]);
 
-useEffect(() => {
-  checkBatteryAPIAndSetup();
-  const intervalId = setInterval(checkBatteryAPIAndSetup, 60000); // 1 menit
-  return () => {
-    clearInterval(intervalId);
-    if (navigator.getBattery) {
-      navigator.getBattery().then((battery) => {
-        battery.removeEventListener("chargingchange", () => updateBatteryInfo(battery));
-        battery.removeEventListener("levelchange", () => updateBatteryInfo(battery));
-      });
+  useEffect(() => {
+    checkBatteryAPIAndSetup();
+    const intervalId = setInterval(checkBatteryAPIAndSetup, 60000); // 1 menit
+    return () => {
+      clearInterval(intervalId);
+      if (navigator.getBattery) {
+        navigator.getBattery().then((battery) => {
+          battery.removeEventListener("chargingchange", () =>
+            updateBatteryInfo(battery)
+          );
+          battery.removeEventListener("levelchange", () =>
+            updateBatteryInfo(battery)
+          );
+        });
+      }
+    };
+  }, [checkBatteryAPIAndSetup, updateBatteryInfo]);
+
+  const filterData = (data, range, month) => {
+    if (!data || data.length === 0) return [];
+    const now = new Date();
+    let startRange, endRange;
+    console.log("Filtering data for range:", range, "and month:", month);
+
+    switch (range) {
+      case "hariini":
+        startRange = new Date(now);
+        startRange.setHours(0, 0, 0, 0);
+        endRange = new Date(now);
+        endRange.setHours(23, 59, 59, 999);
+        break;
+      case "mingguini":
+        const startOfWeek = new Date(now);
+        startOfWeek.setDate(
+          now.getDate() - (now.getDay() === 0 ? 6 : now.getDay() - 1)
+        ); // Set to Monday
+        startOfWeek.setHours(0, 0, 0, 0);
+
+        const endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6);
+        endOfWeek.setHours(23, 59, 59, 999);
+
+        startRange = startOfWeek;
+        endRange = endOfWeek;
+        break;
+      case "bulanini":
+        startRange = new Date(now.getFullYear(), now.getMonth(), 1);
+        endRange = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+        endRange.setHours(23, 59, 59, 999);
+        break;
+      case "bulan":
+        startRange = new Date(now.getFullYear(), month, 1);
+        endRange = new Date(now.getFullYear(), month + 1, 0);
+        endRange.setHours(23, 59, 59, 999);
+        break;
+      default:
+        console.warn(`Range "${range}" is not valid.`);
+        return [];
     }
+
+    console.log("Start Range:", startRange);
+    console.log("End Range:", endRange);
+
+    return data.filter((item) => {
+      const timestamp = item.date;
+
+      if (!timestamp) {
+        console.warn(`Missing or empty timestamp: ${timestamp}`);
+        return false;
+      }
+
+      const date = new Date(timestamp);
+      const isValidDate = !isNaN(date.getTime());
+
+      console.log(
+        "Item Date:",
+        isValidDate ? date : "Invalid Date",
+        "Is in range:",
+        isValidDate && date >= startRange && date <= endRange
+      );
+      return isValidDate && date >= startRange && date <= endRange;
+    });
   };
-}, [checkBatteryAPIAndSetup, updateBatteryInfo]);
 
+  const getDataFields = useCallback((data, field) => {
+    if (!Array.isArray(data)) return [];
+    return data.map((item) => (item[field] !== undefined ? item[field] : null));
+  }, []);
 
-const filterData = (data, range, month) => {
-  if (!data || data.length === 0) return [];
-  const now = new Date();
-  let startRange, endRange;
-  console.log("Filtering data for range:", range, "and month:", month);
-
-  switch (range) {
-    case 'hariini':
-      startRange = new Date(now);
-      startRange.setHours(0, 0, 0, 0);
-      endRange = new Date(now);
-      endRange.setHours(23, 59, 59, 999);
-      break;
-    case 'mingguini':
-      const startOfWeek = new Date(now);
-      startOfWeek.setDate(now.getDate() - (now.getDay() === 0 ? 6 : now.getDay() - 1)); // Set to Monday
-      startOfWeek.setHours(0, 0, 0, 0);
-
-      const endOfWeek = new Date(startOfWeek);
-      endOfWeek.setDate(startOfWeek.getDate() + 6);
-      endOfWeek.setHours(23, 59, 59, 999);
-      
-      startRange = startOfWeek;
-      endRange = endOfWeek;
-      break;
-    case 'bulanini':
-      startRange = new Date(now.getFullYear(), now.getMonth(), 1);
-      endRange = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-      endRange.setHours(23, 59, 59, 999);
-      break;
-    case 'bulan':
-      startRange = new Date(now.getFullYear(), month, 1);
-      endRange = new Date(now.getFullYear(), month + 1, 0);
-      endRange.setHours(23, 59, 59, 999);
-      break;
-    default:
-      console.warn(`Range "${range}" is not valid.`);
-      return [];
-  }
-
-  console.log("Start Range:", startRange);
-  console.log("End Range:", endRange);
-
-  return data.filter(item => {
-    const timestamp = item.date;
-
-    if (!timestamp) {
-      console.warn(`Missing or empty timestamp: ${timestamp}`);
-      return false;
+  const handleTimeRangeChange = useCallback((event) => {
+    const newValue = event.target.value;
+    setTimeRange(newValue);
+    console.log("Time range changed to:", newValue);
+    if (newValue !== "bulan") {
+      setSelectedMonth(new Date().getMonth());
     }
+  }, []);
 
-    const date = new Date(timestamp);
-    const isValidDate = !isNaN(date.getTime()); 
-    
-    console.log("Item Date:", isValidDate ? date : "Invalid Date", "Is in range:", isValidDate && date >= startRange && date <= endRange);
-    return isValidDate && date >= startRange && date <= endRange;
-  });
-}; 
-  
-const getDataFields = useCallback((data, field) => {
-  if (!Array.isArray(data)) return [];
-  return data.map(item => item[field] !== undefined ? item[field] : null);
-}, []);
+  const handleMonthChange = useCallback((event) => {
+    const newMonth = parseInt(event.target.value, 10);
+    setSelectedMonth(newMonth);
+    console.log("Month changed to:", newMonth);
+  }, []);
 
-const handleTimeRangeChange = useCallback((event) => {
-  const newValue = event.target.value;
-  setTimeRange(newValue);
-  console.log("Time range changed to:", newValue);
-  if (newValue !== 'bulan') {
-    setSelectedMonth(new Date().getMonth());
-  }
-}, []);
-
-const handleMonthChange = useCallback((event) => {
-  const newMonth = parseInt(event.target.value, 10);
-  setSelectedMonth(newMonth);
-  console.log("Month changed to:", newMonth);
-}, []);
- 
   useEffect(() => {
     const logSensorDataArrays = () => {
-      console.log('logSensorDataArrays dipanggil');
-      console.log('Is sensorDataUltrasonic an array?', Array.isArray(sensorDataUltrasonic));
-      console.log('SensorDataUltrasonic contents:', sensorDataUltrasonic);
-  
-      console.log('Is sensorDataSubmersible an array?', Array.isArray(sensorDataSubmersible));
-      console.log('SensorDataSubmersible contents:', sensorDataSubmersible);
-  
-      console.log('Is sensorDataSuhu an array?', Array.isArray(sensorDataSuhu));
-      console.log('SensorDataSuhu contents:', sensorDataSuhu);
-  
-      console.log('Is dataBattery an array?', Array.isArray(dataBattery));
-      console.log('DataBattery contents:', dataBattery);
+      console.log("logSensorDataArrays dipanggil");
+      console.log(
+        "Is sensorDataUltrasonic an array?",
+        Array.isArray(sensorDataUltrasonic)
+      );
+      console.log("SensorDataUltrasonic contents:", sensorDataUltrasonic);
+
+      console.log(
+        "Is sensorDataSubmersible an array?",
+        Array.isArray(sensorDataSubmersible)
+      );
+      console.log("SensorDataSubmersible contents:", sensorDataSubmersible);
+
+      console.log("Is sensorDataSuhu an array?", Array.isArray(sensorDataSuhu));
+      console.log("SensorDataSuhu contents:", sensorDataSuhu);
+
+      console.log("Is dataBattery an array?", Array.isArray(dataBattery));
+      console.log("DataBattery contents:", dataBattery);
     };
-  
+
     const interval = setInterval(() => {
-      console.log('Interval callback invoked');
+      console.log("Interval callback invoked");
       logSensorDataArrays();
     }, 600000); // 1 minute
-  
+
     return () => {
-      console.log('Clearing interval');
+      console.log("Clearing interval");
       clearInterval(interval);
     };
-  }, [sensorDataUltrasonic, sensorDataSubmersible, sensorDataSuhu, dataBattery]);
-  
+  }, [
+    sensorDataUltrasonic,
+    sensorDataSubmersible,
+    sensorDataSuhu,
+    dataBattery,
+  ]);
+
   // Filtered data
   const filteredUltrasonicData = useMemo(() => {
     const data = filterData(sensorDataUltrasonic, timeRange, selectedMonth);
     console.log("Filtered Ultrasonic Data:", data);
     return data;
   }, [sensorDataUltrasonic, timeRange, selectedMonth]);
-  
-const filteredSubmersibleData = useMemo(() => {
+
+  const filteredSubmersibleData = useMemo(() => {
     const data = filterData(sensorDataSubmersible, timeRange, selectedMonth);
     console.log("Filtered Submersible Data:", data);
     return data;
   }, [sensorDataSubmersible, timeRange, selectedMonth]);
-  
-const filteredSuhuData = useMemo(() => filterData(sensorDataSuhu, timeRange, selectedMonth), [sensorDataSuhu, timeRange, selectedMonth]);
 
-const filterDataByTime = (ultrasonicData, submersibleData) => {
-  let filteredData = [];
-  
-  const addDataWithBreak = (data, sensorType) => {
-    let lastDate = null;
+  const filteredSuhuData = useMemo(
+    () => filterData(sensorDataSuhu, timeRange, selectedMonth),
+    [sensorDataSuhu, timeRange, selectedMonth]
+  );
 
-    data.forEach(item => {
-      const date = new Date(item.date);
-      const time = date.getHours() + date.getMinutes() / 60;
-      const currentDateStr = date.toDateString();
+  const filterDataByTime = (ultrasonicData, submersibleData) => {
+    let filteredData = [];
 
-      if (lastDate && lastDate !== currentDateStr) {
-        // Add a break between different days
+    const addDataWithBreak = (data, sensorType) => {
+      let lastDate = null;
+
+      data.forEach((item) => {
+        const date = new Date(item.date);
+        const time = date.getHours() + date.getMinutes() / 60;
+        const currentDateStr = date.toDateString();
+
+        if (lastDate && lastDate !== currentDateStr) {
+          // Add a break between different days
+          filteredData.push({ date: null, value: null });
+        }
+
+        if (
+          (sensorType === "ultrasonic" && time >= 9.5 && time < 18) ||
+          (sensorType === "submersible" &&
+            ((time >= 0 && time < 9.5) || time >= 18))
+        ) {
+          filteredData.push({
+            date: item.date,
+            value:
+              sensorType === "ultrasonic"
+                ? item.ket_ultrasonic
+                : item.kedalaman,
+          });
+        }
+
+        lastDate = currentDateStr;
+      });
+    };
+
+    const addBreakBetweenPeriods = () => {
+      if (filteredData.length > 0) {
         filteredData.push({ date: null, value: null });
       }
+    };
 
-      if (
-        (sensorType === 'ultrasonic' && time >= 9.5 && time < 18) ||
-        (sensorType === 'submersible' && ((time >= 0 && time < 9.5) || time >= 18))
-      ) {
-        filteredData.push({
-          date: item.date,
-          value: sensorType === 'ultrasonic' ? item.ket_ultrasonic : item.kedalaman,
-        });
-      }
-
-      lastDate = currentDateStr;
+    // Morning Submersible Data (00:00 - 09:30)
+    const subDataMorning = submersibleData.filter((item) => {
+      const date = new Date(item.date);
+      const time = date.getHours() + date.getMinutes() / 60;
+      return time >= 0 && time < 9.5;
     });
+    addDataWithBreak(subDataMorning, "submersible");
+
+    addBreakBetweenPeriods(); // Add break between morning submersible and ultrasonic data
+
+    // Ultrasonic Data (09:30 - 18:00)
+    const ultrasonicDataFiltered = ultrasonicData.filter((item) => {
+      const date = new Date(item.date);
+      const time = date.getHours() + date.getMinutes() / 60;
+      return time >= 9.5 && time < 18;
+    });
+    addDataWithBreak(ultrasonicDataFiltered, "ultrasonic");
+
+    addBreakBetweenPeriods(); // Add break between ultrasonic and evening submersible data
+
+    // Evening Submersible Data (18:00 - 24:00)
+    const subDataEvening = submersibleData.filter((item) => {
+      const date = new Date(item.date);
+      const time = date.getHours() + date.getMinutes() / 60;
+      return time >= 18;
+    });
+    addDataWithBreak(subDataEvening, "submersible");
+
+    return filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
   };
 
-  const addBreakBetweenPeriods = () => {
-    if (filteredData.length > 0) {
-      filteredData.push({ date: null, value: null });
-    }
-  };
+  const combinedData = useMemo(() => {
+    return filterDataByTime(filteredUltrasonicData, filteredSubmersibleData);
+  }, [filteredUltrasonicData, filteredSubmersibleData]);
 
-  // Morning Submersible Data (00:00 - 09:30)
-  const subDataMorning = submersibleData.filter(item => {
-    const date = new Date(item.date);
-    const time = date.getHours() + date.getMinutes() / 60;
-    return time >= 0 && time < 9.5;
-  });
-  addDataWithBreak(subDataMorning, 'submersible');
-
-  addBreakBetweenPeriods(); // Add break between morning submersible and ultrasonic data
-
-  // Ultrasonic Data (09:30 - 18:00)
-  const ultrasonicDataFiltered = ultrasonicData.filter(item => {
-    const date = new Date(item.date);
-    const time = date.getHours() + date.getMinutes() / 60;
-    return time >= 9.5 && time < 18;
-  });
-  addDataWithBreak(ultrasonicDataFiltered, 'ultrasonic');
-
-  addBreakBetweenPeriods(); // Add break between ultrasonic and evening submersible data
-
-  // Evening Submersible Data (18:00 - 24:00)
-  const subDataEvening = submersibleData.filter(item => {
-    const date = new Date(item.date);
-    const time = date.getHours() + date.getMinutes() / 60;
-    return time >= 18;
-  });
-  addDataWithBreak(subDataEvening, 'submersible');
-
-  return filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
-};
-
-const combinedData = useMemo(() => {
-  return filterDataByTime(filteredUltrasonicData, filteredSubmersibleData);
-}, [filteredUltrasonicData, filteredSubmersibleData]);
-
-const xDataCombined = useMemo(
-    () => getDataFields(combinedData, 'date'),
+  const xDataCombined = useMemo(
+    () => getDataFields(combinedData, "date"),
     [combinedData, getDataFields]
-);
+  );
 
-const yDataCombined = useMemo(
-    () => getDataFields(combinedData, 'value'),
+  const yDataCombined = useMemo(
+    () => getDataFields(combinedData, "value"),
     [combinedData, getDataFields]
-);
+  );
 
   const waktuUltrasonic = useMemo(() => {
-    const dates = getDataFields(filteredUltrasonicData, 'date');
-    if (dates.length === 0) return null; 
-  
+    const dates = getDataFields(filteredUltrasonicData, "date");
+    if (dates.length === 0) return null;
+
     return dates[0];
   }, [filteredUltrasonicData, getDataFields]);
-  
-  console.log('waktuUltrasonic:', waktuUltrasonic);
+
+  console.log("waktuUltrasonic:", waktuUltrasonic);
 
   const statusUltrasonic = useMemo(() => {
-    if (filteredUltrasonicData.length === 0) return null; 
-  
+    if (filteredUltrasonicData.length === 0) return null;
+
     const lastItem = filteredUltrasonicData[0];
     return lastItem.status;
   }, [filteredUltrasonicData]);
-  
-  console.log('statusUltrasonic:', statusUltrasonic);
+
+  console.log("statusUltrasonic:", statusUltrasonic);
 
   const waktuSubmersible = useMemo(() => {
-    const dates = getDataFields(filteredSubmersibleData, 'date');
-    if (dates.length === 0) return null; 
-  
-   
+    const dates = getDataFields(filteredSubmersibleData, "date");
+    if (dates.length === 0) return null;
+
     return dates[0];
   }, [filteredSubmersibleData, getDataFields]);
-  
-  console.log('waktuSubmersible:', waktuSubmersible);
+
+  console.log("waktuSubmersible:", waktuSubmersible);
 
   const statusSubmersible = useMemo(() => {
     if (filteredSubmersibleData.length === 0) return null;
-  
+
     const lastItem = filteredSubmersibleData[0];
     return lastItem.status;
   }, [filteredSubmersibleData]);
-  
-  console.log('statusSubmersible:', statusSubmersible);
-  
+
+  console.log("statusSubmersible:", statusSubmersible);
+
   const xDataSuhu = useMemo(
-    () => getDataFields(filteredSuhuData, 'date'),
+    () => getDataFields(filteredSuhuData, "date"),
     [filteredSuhuData, getDataFields]
   );
-  console.log('xDataSuhu:', xDataSuhu);
-  
+  console.log("xDataSuhu:", xDataSuhu);
+
   const yDataSuhu = useMemo(
-    () => getDataFields(filteredSuhuData, 'suhu'),
+    () => getDataFields(filteredSuhuData, "suhu"),
     [filteredSuhuData, getDataFields]
   );
-  console.log('yDataSuhu:', yDataSuhu); 
-  
+  console.log("yDataSuhu:", yDataSuhu);
+
   const StatusIcon = styled.span`
-  color: ${props => {
-    switch (props.status) {
-      case 'Normal':
-        return 'green'; 
-      case 'Siaga':
-        return '#FFD700'; 
-      case 'Bahaya':
-        return 'red'; 
-      default:
-        return 'black';
+    color: ${(props) => {
+      switch (props.status) {
+        case "Normal":
+          return "green";
+        case "Siaga":
+          return "#FFD700";
+        case "Bahaya":
+          return "red";
+        default:
+          return "black";
       }
     }};
     font-weight: bold;
@@ -477,10 +566,14 @@ const yDataCombined = useMemo(
     return <div>Loading...</div>;
   }
 
-  if (!Array.isArray(sensorDataUltrasonic) || !Array.isArray(sensorDataSubmersible) || !Array.isArray(sensorDataSuhu) || !Array.isArray(dataBattery)) {
+  if (
+    !Array.isArray(sensorDataUltrasonic) ||
+    !Array.isArray(sensorDataSubmersible) ||
+    !Array.isArray(sensorDataSuhu) ||
+    !Array.isArray(dataBattery)
+  ) {
     return <div>Error: Sensor data is not an array</div>;
   }
-
 
   return (
     <div className="max-w-[1240px] w-full  h-full mx-auto flex flex-col  pt-8 pb-8">
@@ -495,7 +588,11 @@ const yDataCombined = useMemo(
           Universitas Telkom - Bandung
         </h1>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
-        <CardData title="Hari ini" ultrasonic={kenaikanHarian} submersible={kenaikanHarianSub} levelUp>
+          <CardData
+            title="Hari ini"
+            ultrasonic={kenaikanHarian}
+            submersible={kenaikanHarianSub}
+          >
             <svg
               className="fill-primary dark:fill-white"
               width="22"
@@ -514,7 +611,11 @@ const yDataCombined = useMemo(
               />
             </svg>
           </CardData>
-          <CardData title="7 Hari Terakhir" ultrasonic={kenaikanMingguan} submersible={kenaikanMingguanSub} levelUp>
+          <CardData
+            title="7 Hari Terakhir"
+            ultrasonic={kenaikanMingguan}
+            submersible={kenaikanMingguanSub}
+          >
             <svg
               className="fill-primary dark:fill-white"
               width="20"
@@ -537,7 +638,11 @@ const yDataCombined = useMemo(
               />
             </svg>
           </CardData>
-          <CardData title="30 Hari Terakhir" ultrasonic={kenaikanBulanan} submersible={kenaikanBulananSub} levelUp>
+          <CardData
+            title="30 Hari Terakhir"
+            ultrasonic={kenaikanBulanan}
+            submersible={kenaikanBulananSub}
+          >
             <svg
               className="fill-primary dark:fill-white"
               width="22"
@@ -568,7 +673,9 @@ const yDataCombined = useMemo(
                 {" "}
                 <div className="flex justify-between items-center mt-4">
                   <div>
-                    <p className="text-gray-600">⏰ {formatDate(currentDate)}</p>
+                    <p className="text-gray-600">
+                      ⏰ {formatDate(currentDate)}
+                    </p>
                   </div>
                   <div className="flex items-center">
                     <select
@@ -583,14 +690,19 @@ const yDataCombined = useMemo(
                       <option value="bulan">Pilih Bulan</option>
                     </select>
                     {timeRange === "bulan" && (
-                    <select value={selectedMonth} onChange={handleMonthChange}>
-                      {Array.from({ length: 12 }, (_, i) => (
-                        <option key={i} value={i}>
-                          {new Date(0, i).toLocaleString("default", { month: "long" })}
-                        </option>
-                      ))}
-                    </select>
-                  )}
+                      <select
+                        value={selectedMonth}
+                        onChange={handleMonthChange}
+                      >
+                        {Array.from({ length: 12 }, (_, i) => (
+                          <option key={i} value={i}>
+                            {new Date(0, i).toLocaleString("default", {
+                              month: "long",
+                            })}
+                          </option>
+                        ))}
+                      </select>
+                    )}
                   </div>
                 </div>
                 <Plot
@@ -622,7 +734,9 @@ const yDataCombined = useMemo(
                   {" "}
                   <div className="flex justify-between items-center mt-4">
                     <div>
-                      <p className="text-gray-600">⏰ {formatDate(currentDate)}</p>
+                      <p className="text-gray-600">
+                        ⏰ {formatDate(currentDate)}
+                      </p>
                     </div>
                   </div>
                   <Plot
@@ -649,16 +763,20 @@ const yDataCombined = useMemo(
           </div>
 
           <div class="">
-            <div className="status-card rounded-lg shadow-lg w-full max-w-[500px] p-4">
-              <div className="warning-header text-base font-bold mb-4">
+            <div className="rounded-lg shadow-lg w-full max-w-[500px] ">
+              <div className="warning-page text-base font-bold">
                 <h2>Status</h2>
               </div>
               <div className="warning-content">
                 <div className="warning-level flex justify-between items-center mb-4">
                   <div className="status-icons flex items-center">
-                  <StatusIcon status={statusUltrasonic}>{statusUltrasonic}</StatusIcon>
+                    <StatusIcon status={statusUltrasonic}>
+                      {statusUltrasonic}
+                    </StatusIcon>
                   </div>
-                  <span className="time-ago text-gray-500">⏰ {formatDate(currentDate)}</span>
+                  <span className="time-ago text-gray-500">
+                    ⏰ {formatDate(currentDate)}
+                  </span>
                 </div>
                 <div className="warning-details">
                   <div className="time-info flex justify-between mb-2">
@@ -689,10 +807,10 @@ const yDataCombined = useMemo(
                     <div className="text-center">
                       {batteryInfo.supported ? (
                         <div className="flex flex-col items-center justify-center space-y-2">
-                          <BatteryInfo 
-                          batteryInfo={batteryInfo}
-                          isCharging={batteryInfo.charging}
-                          supported={batteryInfo.supported}
+                          <BatteryInfo
+                            batteryInfo={batteryInfo}
+                            isCharging={batteryInfo.charging}
+                            supported={batteryInfo.supported}
                           />
                         </div>
                       ) : (

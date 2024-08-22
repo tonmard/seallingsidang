@@ -7,27 +7,27 @@ const Hero = () => {
     <div className="text-white">
       <div className="max-w-[1000px] w-full h-screen max-h-[500px] mx-auto text-center flex flex-col justify-center">
         <div className="flex justify-center item-center">
-          <h1 className=" bg-gradient-to-r from-blue-900 to-sky-500 text-white px-2 text-7xl object-mid font-black">
+          <h1 className=" text-white text-4xl md:text-7xl font-black">
             Sea Level Monitoring
           </h1>
         </div>
 
-        <div className="flex justify-center items-center mt-10">
+        <div className="flex justify-center items-center mt-6">
           <p className="md:text-5xl sm:text-4xl text-xl font-normal italic py-4">
             Monitoring air laut secara
           </p>
           <Typed
             className="underline decoration-sky-500 md:text-5xl sm:text-4xl text-xl font-bold md:pl-4 pl-2"
-            strings={["REAL TIME", "AKURAT", "EFISIEN"]}
+            strings={["AKURAT", "EFISIEN", "TERPERCAYA"]}
             typeSpeed={120}
             backSpeed={140}
             loop
           />
         </div>
         <div className="flex justify-center mt-2 items-center md:text-xl text-xl font-medium text-gray-500 mb-2">
-          <p className=" md:text-xl text-xl font-medium text-gray-500 ">
-            Deteksi awal, aksi cepat: bersama melindungi ekosistem laut dari
-            ancaman.
+          <p className=" md:text-xl text-base font-medium text-gray-500 ">
+            Deteksi tepat, aksi sigap: bersama mencegah bencana dari ekosistem
+            laut.
           </p>
         </div>
 

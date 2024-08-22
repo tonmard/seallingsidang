@@ -59,17 +59,18 @@ const Alat = () => {
                 </h1>
                 <div class="max-w-xl">
                   <p class="mt-6">
-                    Sistem menggunakan tiga sensor, yaitu: sensor Lidar, sensor
-                    ultrasonik dan sensor water pressure. sensor ini memantau
-                    ketinggian air laut dan parameter lainnya selama 24 jam.
-                    dengan menggunakan algoritma analitik canggih menganalisis
-                    hasil informasi tersebut dan dikirim ke website.
+                    Sistem menggunakan empat sensor, yaitu: ultrasonik, sensor
+                    water pressure, sensor suhu, dan sensor tegangan. sensor
+                    utama adalah sensor yang memantau ketinggian air laut dan
+                    parameter lainnya selama 24 jam pada interval 15 menit.
+                    sensor pendukung adalah sensor yang digunakan untuk
+                    mendukung sistem dalam bekerja.
                   </p>
                   <p class="mt-6">
                     Data hasil pengukuran sistem dapat kita akses melalui
                     website sealling. Dengan menggunakan website, data dari
-                    berbagai sensor di dasar laut dapat dikumpulkan, dianalisis,
-                    dan disebarluaskan dengan lebih efisien.
+                    berbagai sensor di laut dapat dikumpulkan, dianalisis, dan
+                    disebarluaskan dengan lebih efisien.
                   </p>
                   <p class="mt-6">
                     Berdasarkan hasil pengukuran dari sensor dan menggunakan
@@ -84,7 +85,7 @@ const Alat = () => {
                     Sensor
                   </dt>
                   <dd class="mt-2 text-base font-bold leading-10 tracking-tight text-gray-900">
-                    5 Unit
+                    4 Unit
                   </dd>
                 </div>
                 <div>
@@ -100,7 +101,7 @@ const Alat = () => {
                     Peringatan Dini
                   </dt>
                   <dd class="mt-2 text-base font-bold leading-10 tracking-tight text-gray-900">
-                    Email
+                    Telegram
                   </dd>
                 </div>
                 <div>

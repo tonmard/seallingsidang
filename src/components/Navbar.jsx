@@ -36,8 +36,8 @@ const Navbar = () => {
             <a href="/tentang-kami">Tentang Kami</a>
           </li>
         </ul>
-        <a href="/peringatan-dini">
-          <button className="hidden lg:flex hover:-translate-y-1 hover:scale-105  duration-300 bg-white h-auto text-center hover:bg-slate-100 md:w-[200px] rounded-full font-medium text-sm my-6 mx-auto px-4 py-2 text-slate-900">
+        <a href="https://t.me/+jaoNjSIDGVgxYzZl">
+          <button className="hidden lg:flex  hover:scale-105  duration-300 bg-white h-auto text-center hover:bg-slate-100 md:w-[200px] rounded-full font-medium text-sm my-6 mx-auto px-4 py-2 text-slate-900">
             Dapatkan Peringatan Dini
           </button>
         </a>
@@ -87,7 +87,7 @@ const Navbar = () => {
             </a>
           </li>
           <li className="p-4 font-lg  hover:text-slate-100">
-            <a href="/peringatan-dini" onClick={handleNav}>
+            <a href="https://t.me/+jaoNjSIDGVgxYzZl" onClick={handleNav}>
               Dapatkan Peringatan Dini
             </a>
           </li>

@@ -1,5 +1,5 @@
 import React from "react";
-import { pptony, tujuan, waves } from "../constants";
+import { ppbut, ppfanza, ppfatan, ppsul, pptony } from "../constants";
 
 const TentangKami = () => {
   return (
@@ -23,18 +23,14 @@ const TentangKami = () => {
             </p>
           </div>
         </div>
-        <div className="flex m-4 p-8 bg-slate-900 justify-between rounded-lg shadow-lg font-sans items-center">
-          <div className="max-w-[900px] text-left">
+        <div className="flex m-4 p-8 bg-slate-900 justify-center rounded-lg shadow-lg font-sans items-center">
+          <div className="max-w-[900px] text-center">
             <h1 className="text-3xl font-bold text-white">Tujuan</h1>
             <p className="text-base text-gray-200 mt-2">
               Menjadi yang terbaik dalam solusi monitoring air laut yang
               inovatif dan berkelanjutan, serta berkontribusi dalam mitigasi
               perubahan iklim dan perlindungan lingkungan laut.
             </p>
-          </div>
-
-          <div className="hidden md:flex ">
-            <img src={tujuan} alt="Tujuan" className="max-h-[150px] " />
           </div>
         </div>
         <div class="container mx-auto py-10">
@@ -81,12 +77,12 @@ const TentangKami = () => {
             </h2>
 
             <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-8 max-sm:justify-center text-center">
-              <div class="bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all duration-500">
+              <div class="bg-white rounded-lg p-6 shadow-md ">
                 <div class="lg:min-h-[250px]">
                   <img
-                    src={waves}
+                    src={ppbut}
                     class="w-full rounded-lg inline-block"
-                    alt=""
+                    alt="Foto  Moch. Fadhilla Azzam"
                   />
                 </div>
 
@@ -97,31 +93,33 @@ const TentangKami = () => {
                   <p class="text-sm text-gray-600 mt-1">Software Engineer</p>
 
                   <div class="space-x-4 mt-6">
-                    <button
-                      type="button"
-                      class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14px"
-                        fill="#333"
-                        viewBox="0 0 24 24"
+                    <a href="https://www.linkedin.com/in/mochamad-azzam-99381a214/">
+                      <button
+                        type="button"
+                        class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
                       >
-                        <path
-                          d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
-                          data-original="#0077b5"
-                        />
-                      </svg>
-                    </button>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14px"
+                          fill="#333"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
+                            data-original="#0077b5"
+                          />
+                        </svg>
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
-              <div class="bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all duration-500">
+              <div class="bg-white rounded-lg p-6 shadow-md ">
                 <div class="lg:min-h-[250px]">
                   <img
                     src={pptony}
                     class="w-full rounded-lg inline-block"
-                    alt=""
+                    alt="Foto Tony Mardyansyah"
                   />
                 </div>
 
@@ -132,31 +130,33 @@ const TentangKami = () => {
                   <p class="text-sm text-gray-600 mt-1">Front-End Developer</p>
 
                   <div class="space-x-4 mt-6">
-                    <button
-                      type="button"
-                      class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14px"
-                        fill="#333"
-                        viewBox="0 0 24 24"
+                    <a href="https://www.linkedin.com/in/tonmard/">
+                      <button
+                        type="button"
+                        class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
                       >
-                        <path
-                          d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
-                          data-original="#0077b5"
-                        />
-                      </svg>
-                    </button>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14px"
+                          fill="#333"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
+                            data-original="#0077b5"
+                          />
+                        </svg>
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
-              <div class="bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all duration-500">
+              <div class="bg-white rounded-lg p-6 shadow-md ">
                 <div class="lg:min-h-[250px]">
                   <img
-                    src={waves}
-                    class="w-full rounded-lg inline-block"
-                    alt=""
+                    src={ppfatan}
+                    class="w-full rounded-lg block"
+                    alt="Foto Najwa Al Fatan"
                   />
                 </div>
 
@@ -167,31 +167,38 @@ const TentangKami = () => {
                   <p class="text-sm text-gray-600 mt-1">Hardware Engineer</p>
 
                   <div class="space-x-4 mt-6">
-                    <button
-                      type="button"
-                      class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14px"
-                        fill="#333"
-                        viewBox="0 0 24 24"
+                    <a href="https://www.linkedin.com/in/najwa-al-fatan-81a377324/">
+                      <button
+                        type="button"
+                        class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
                       >
-                        <path
-                          d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
-                          data-original="#0077b5"
-                        />
-                      </svg>
-                    </button>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14px"
+                          fill="#333"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
+                            data-original="#0077b5"
+                          />
+                        </svg>
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
             <div className="my-10">
               <div class="justify-center md:flex text-center">
-                <div class=" bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all duration-500 mb-6">
+                <div class=" bg-white rounded-lg p-6 shadow-md  mb-6">
                   <div class="h-auto w-auto md:max-h-[250px] md:max-w-[250px] rounded-lg">
-                    <img src={waves} class="h-full w-full rounded-lg " alt="" />
+                    <img
+                      src={ppsul}
+                      class=" w-full rounded-lg "
+                      height="250"
+                      alt="Foto Sulthan Kareem A."
+                    />
                   </div>
 
                   <div class="mt-6">
@@ -201,28 +208,34 @@ const TentangKami = () => {
                     <p class="text-sm text-gray-600 mt-1">Back-End Developer</p>
 
                     <div class="space-x-4 mt-6">
-                      <button
-                        type="button"
-                        class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14px"
-                          fill="#333"
-                          viewBox="0 0 24 24"
+                      <a href="/">
+                        <button
+                          type="button"
+                          class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
                         >
-                          <path
-                            d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
-                            data-original="#0077b5"
-                          />
-                        </svg>
-                      </button>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14px"
+                            fill="#333"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
+                              data-original="#0077b5"
+                            />
+                          </svg>
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
-                <div class=" bg-white rounded-lg p-6 shadow-md hover:scale-105 transition-all md:ml-20 duration-500 mb-6">
+                <div class=" bg-white rounded-lg p-6 shadow-md  md:ml-20 mb-6">
                   <div class="h-auto w-auto md:max-h-[250px] md:max-w-[250px]">
-                    <img src={waves} class="h-full w-full rounded-lg" alt="" />
+                    <img
+                      src={ppfanza}
+                      class="h-full w-full rounded-lg"
+                      alt="Foto Abrari Fanza"
+                    />
                   </div>
 
                   <div class="mt-6">
@@ -232,22 +245,24 @@ const TentangKami = () => {
                     <p class="text-sm text-gray-600 mt-1">Data Analyst</p>
 
                     <div class="space-x-4 mt-6">
-                      <button
-                        type="button"
-                        class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14px"
-                          fill="#333"
-                          viewBox="0 0 24 24"
+                      <a href="https://www.linkedin.com/in/abrarifanza/">
+                        <button
+                          type="button"
+                          class="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none  bg-gray-100 hover:bg-gray-200"
                         >
-                          <path
-                            d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
-                            data-original="#0077b5"
-                          />
-                        </svg>
-                      </button>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14px"
+                            fill="#333"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 0 0 2.882 0z"
+                              data-original="#0077b5"
+                            />
+                          </svg>
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
