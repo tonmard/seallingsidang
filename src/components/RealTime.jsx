@@ -679,7 +679,7 @@ const RealTime = () => {
                   </div>
                   <div className="flex items-center">
                     <select
-                      className="border border-collapse ml-2 px-2 rounded-lg p-0"
+                      className="border border-collapse ml-2 px-2 rounded-lg"
                       id="timeRange"
                       value={timeRange}
                       onChange={handleTimeRangeChange}
@@ -691,6 +691,7 @@ const RealTime = () => {
                     </select>
                     {timeRange === "bulan" && (
                       <select
+                        className="border border-collapse ml-2 px-2 rounded-lg"
                         value={selectedMonth}
                         onChange={handleMonthChange}
                       >
